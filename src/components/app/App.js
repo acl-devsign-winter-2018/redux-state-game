@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './app.css';
+import Letters from '../letters/Letters';
 
 export default class App extends Component {
 
@@ -15,6 +16,7 @@ export default class App extends Component {
           <h1></h1>
         </header>
         <main id="main" role="main">
+          <Letters/>
         </main>
         <footer id="footer" role="contentinfo">
           <ul>
