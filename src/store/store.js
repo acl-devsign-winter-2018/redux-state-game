@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import { letter } from '../components/letters/reducers';
+import { letter as guesses } from '../components/letters/reducers';
 
 const reducer = combineReducers({
-  letter
+  guesses
 });
 
 

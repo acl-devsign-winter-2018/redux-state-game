@@ -7,7 +7,7 @@ export default class Letter extends Component {
     const { letter, onSelect } = this.props;
 
     return (
-      <button className="letter" onClick={onSelect} value={letter}>
+      <button className="letter" onClick={(event) => onSelect(event.target)} value={letter}>
         {letter}
       </button>
     );
