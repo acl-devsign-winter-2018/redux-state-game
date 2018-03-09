@@ -15,7 +15,7 @@ export default class Letters extends Component {
 
   render() {
     const { alphabet } = this.state;
-    console.log(alphabet);
+
     return (
       <div className="letters-container">
         {alphabet.map(letter => <Letter key={letter} letter={letter} onSelect={this.handleSelect}/>)}
