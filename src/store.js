@@ -1,32 +1,24 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-// import { categories } from './components/budget/reducer';
+import { createStore } from 'redux';
+import { initialState, gameReducer } from './components/app/reducers';
 // import { expensesByCategory } from './components/expenses/reducer';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
+
+const store = createStore(gameReducer, initialState);
 
 // combine reducer
-const reducer = combineReducers({
-  // categories,
-  // expensesByCategory
-});
-
-// async middleware
-const async = store => next => action => {
-  if(typeof action === 'function') {
-    action(store.dispatch, store.getState);
-  }
-  else {
-    return next(action);
-  }
-};
+// const reducer = combineReducers({
+//   initialState,
+//   gameReducer
+// });
 
 // extension
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // create store
-const store = createStore(
-  reducer,
-  composeEnhancers(
-    applyMiddleware(thunk) 
-  ));
+// const store = createStore(
+//   reducer,
+//   composeEnhancers(
+//     applyMiddleware(thunk) 
+//   ));
 
 export default store;

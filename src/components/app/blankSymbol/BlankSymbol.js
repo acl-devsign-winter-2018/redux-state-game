@@ -12,7 +12,7 @@ export const Symbol = styled.div`
 
 const BlankSymbol = (props) => {
   return <Symbol onClick={() => props.addSymbol(props.turn)}></Symbol>;
-}
+};
 
 
 export default BlankSymbol;

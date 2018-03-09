@@ -1,5 +1,5 @@
 import React from 'react';
-import { Symbol } from './BlankSymbol';
+import { Symbol } from '../blankSymbol/BlankSymbol';
 
 const OSymbol = (props) => {
   return (
