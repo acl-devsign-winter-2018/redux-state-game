@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import Letter from './Letter';
+import { guessLetter } from './actions';
 
 
 export default class Letters extends Component {

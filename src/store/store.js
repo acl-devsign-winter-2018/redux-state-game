@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { letter } from '../letters/reducers';
+import { letter } from '../components/letters/reducers';
 
 const reducer = combineReducers({
   letter

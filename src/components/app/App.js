@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './app.css';
 import Letters from '../letters/Letters';
+import Word from '../word/Word';
+
 
 export default class App extends Component {
 
@@ -16,6 +18,7 @@ export default class App extends Component {
           <h1></h1>
         </header>
         <main id="main" role="main">
+          <Word/>
           <Letters/>
         </main>
         <footer id="footer" role="contentinfo">
