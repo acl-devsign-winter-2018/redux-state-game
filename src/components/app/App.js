@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import './app.css';
 import Letters from '../letters/Letters';
 import Word from '../word/Word';
-import { loadWords } from './actions';
+import { loadWords, newGame } from './actions';
 
 
 class App extends Component {
 
   componentDidMount() {
     this.props.loadWords();
+    this.props.newGame();
   }
 
   render() {
@@ -33,5 +34,5 @@ class App extends Component {
 
 export default connect(
   null,
-  ({ loadWords })
+  ({ loadWords, newGame })
 )(App);

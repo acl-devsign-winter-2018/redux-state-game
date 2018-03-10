@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { letter as guesses } from '../components/letters/reducers';
-import { word, words } from '../components/app/reducers';
+import { game, words } from '../components/app/reducers';
 
 const reducer = combineReducers({
   guesses,
-  word,
+  game,
   words
 });
 
