@@ -1,6 +1,6 @@
 import { GAME_NEW, WORDS_LOAD } from './reducers';
 import { loadWords, newGame } from './actions';
-import { words } from './pokemonNames';
+import { words } from '../app/pokemonNames';
 
 describe('words action tests:', () => {
 
