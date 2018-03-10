@@ -1,5 +1,5 @@
-import { GAME_NEW, WORDS_LOAD } from './reducers';
-import { loadWords, newGame } from './actions';
+import { WORDS_LOAD } from './reducers';
+import { loadWords } from './actions';
 import { words } from '../app/pokemonNames';
 
 describe('words action tests:', () => {
@@ -10,13 +10,3 @@ describe('words action tests:', () => {
     expect(payload).toBe(words);
   });
 });
-
-// describe('game action tests:', () => {
-
-//   it('creates new game action', () => {
-//     const { type, payload } = newGame();
-//     expect(type).toBe(GAME_NEW);
-//     expect(payload).toBeTruthy();
-//   });
-// });
-//unsure of how to test a thunk

@@ -15,17 +15,10 @@ class App extends Component {
     this.props.newGame();
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const { word } = this.props;
-  //   if(nextProps.guesses.includes(letter)) this.setState({ selected: true });
-  // }
-
   render() {
 
     const { word } = this.props;
-    console.log(word);
-    console.log(word !== '');
-    
+
     return (
       <div id="container">
         <header id="header">
