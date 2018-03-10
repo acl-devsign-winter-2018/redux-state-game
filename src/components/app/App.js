@@ -4,7 +4,7 @@ import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Home from './home/Home';
-import Board from './board/Board';
+
 
 export default class App extends Component {
 
@@ -24,7 +24,7 @@ export default class App extends Component {
                 <Redirect to="/"/>
               </Switch>
 
-              <Board/>
+            
             </main>
           </div>
         </Router>
