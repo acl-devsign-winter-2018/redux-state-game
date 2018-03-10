@@ -23,12 +23,9 @@ class Image extends Component {
       <figure>
         <div className="image-box">
           <img src={image} alt='image of pokemon you are guessing'/>
-          { (incorrect < 2) && <span id="incorrect-1"></span>}
-          { (incorrect < 3) && <span id="incorrect-2"></span>}
-          { (incorrect < 4) && <span id="incorrect-3"></span>}
-          { (incorrect < 5) && <span id="incorrect-4"></span>}
-          { (incorrect < 6) && <span id="incorrect-5"></span>}
-          { (incorrect < 7) && <span id="incorrect-6"></span>}
+          {Array(6 - incorrect).fill().map((ignore, i) => (
+            <span key={i} className={`incorrect incorrect-${6 - i}`}></span>
+          ))}
         </div>
         <figcaption>{text}</figcaption>
       </figure>
