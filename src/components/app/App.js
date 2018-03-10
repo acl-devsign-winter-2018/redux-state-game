@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { loadWords, newGame } from '../word/actions';
+import { loadWords } from '../word/actions';
+import { newGame } from './actions';
 import './app.css';
 import Letters from '../letters/Letters';
 import Word from '../word/Word';
@@ -14,7 +15,16 @@ class App extends Component {
     this.props.newGame();
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   const { word } = this.props;
+  //   if(nextProps.guesses.includes(letter)) this.setState({ selected: true });
+  // }
+
   render() {
+
+    const { word } = this.props;
+    console.log(word);
+    console.log(word !== '');
     
     return (
       <div id="container">
@@ -22,9 +32,13 @@ class App extends Component {
           <h1></h1>
         </header>
         <main id="main" role="main">
-          <Image/>
-          <Word/>
-          <Letters/>
+          { word !== '' && 
+            <Fragment>
+              <Image/>
+              <Word/>
+              <Letters/>
+            </Fragment>
+          }
         </main>
         <footer id="footer" role="contentinfo">
           <small>&copy; 2018 Grace Provost &amp; Charly Welch | Student Work</small>
@@ -35,6 +49,6 @@ class App extends Component {
 }
 
 export default connect(
-  null,
+  state => ({ word: state.word }),
   ({ loadWords, newGame })
 )(App);

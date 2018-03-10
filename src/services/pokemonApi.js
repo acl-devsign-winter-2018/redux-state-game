@@ -1,4 +1,4 @@
-const URL = 'http://pokeapi.salestock.net/api/v2';
+const URL = 'https://pokeapi.co/api/v2';
 import { get } from './request';
 
 const getPokemonImage = (pokemon) => get(`${URL}/pokemon/${pokemon}`);

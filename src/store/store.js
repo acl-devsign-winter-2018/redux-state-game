@@ -2,7 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from './promiseMiddleware';
 import { letter as guesses } from '../components/letters/reducers';
-import { word, words } from '../components/word/reducers';
+import { word } from '../components/app/reducers';
+import { words } from '../components/word/reducers';
 import { image, text } from '../components/image/reducers';
 
 const reducer = combineReducers({

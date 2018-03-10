@@ -5,11 +5,6 @@ import './image.css';
 
 class Image extends Component {
 
-  componentDidMount() {
-    this.props.getPokemonImage();
-    this.props.getPokemonText();
-  }
-
   state = {
     incorrect: 0
   };

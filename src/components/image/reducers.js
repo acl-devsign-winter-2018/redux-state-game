@@ -1,5 +1,4 @@
-export const IMAGE_GET = 'IMAGE_GET';
-export const TEXT_GET = 'TEXT_GET';
+import { GAME_NEW } from '../app/reducers';
 
 function findEnglishText(list) {
   let engEntry;
@@ -14,8 +13,8 @@ function findEnglishText(list) {
 
 export function image(state = '', { type, payload }) {
   switch(type) {
-    case IMAGE_GET:
-      return payload.sprites.front_default;
+    case GAME_NEW:
+      return payload.image.sprites.front_default;
     default:
       return state;
   }
@@ -23,8 +22,8 @@ export function image(state = '', { type, payload }) {
 
 export function text(state = '', { type, payload }) {
   switch(type) {
-    case TEXT_GET:
-      return findEnglishText(payload.flavor_text_entries);
+    case GAME_NEW:
+      return findEnglishText(payload.text.flavor_text_entries);
     default: 
       return state;
   }
