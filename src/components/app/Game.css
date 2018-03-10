@@ -1,0 +1,48 @@
+@import '../../styles/variables.css';
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.square {
+  background: #fff;
+  border: 2px solid #c1c1c1;
+  float: left;
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 75px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 75px;
+  transition: 0.3s ease all;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.square:hover {
+  background-color: #f2f2f2;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+}
+
+.status {
+  margin: 0 0 1rem;
+}
+
+.x {
+  color: red;
+}
+
+.o {
+  color: #01eeaf;
+}

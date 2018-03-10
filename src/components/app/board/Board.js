@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../App.css';
+import '../Game.css';
 // import Square from '../square/Square';
 
 function Square(props) {
@@ -23,7 +23,7 @@ class Board extends Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? <span className="x">X</span> : <span className="o">O</span>;
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext
