@@ -22,13 +22,12 @@ class Image extends Component {
     return (
       <figure className="image-box">
         <img src={image} alt='image of pokemon you are guessing'/>
-        <p>{incorrect}</p>
-        { (incorrect > 0) && <span id="incorrect-1">hi</span>}
-        { (incorrect > 1) && <span id="incorrect-2">hi2</span>}
-        { (incorrect > 2) && <span id="incorrect-3">hi3</span>}
-        { (incorrect > 3) && <span id="incorrect-4">hi4</span>}
-        { (incorrect > 4) && <span id="incorrect-5">hi5</span>}
-        { (incorrect > 5) && <span id="incorrect-6">hi6</span>}
+        { (incorrect < 2) && <span id="incorrect-1"></span>}
+        { (incorrect < 3) && <span id="incorrect-2"></span>}
+        { (incorrect < 4) && <span id="incorrect-3"></span>}
+        { (incorrect < 5) && <span id="incorrect-4"></span>}
+        { (incorrect < 6) && <span id="incorrect-5"></span>}
+        { (incorrect < 7) && <span id="incorrect-6"></span>}
       </figure>
     );
   }
