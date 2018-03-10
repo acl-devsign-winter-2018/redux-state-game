@@ -1,16 +1,23 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { letter as guesses } from '../components/letters/reducers';
+import { word, words } from '../components/app/reducers';
 
 const reducer = combineReducers({
-  guesses
+  guesses,
+  word,
+  words
 });
 
-
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() 
+  composeEnhancers(
+    applyMiddleware(
+      thunk
+    ) 
+  )
 );
 
 export default store;

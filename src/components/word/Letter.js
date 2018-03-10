@@ -8,15 +8,13 @@ class Letter extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { guesses, letter } = this.props;
+    const { letter } = this.props;
     if(nextProps.guesses.includes(letter)) this.setState({ guessed: true });
   }
 
   render() {
     const { letter } = this.props;
     const { guessed } = this.state;
-
-    console.log(this.state);
 
     return (
       <li className="game-letters">

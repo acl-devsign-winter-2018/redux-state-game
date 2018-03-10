@@ -1,4 +1,4 @@
-['Bulbasaur',
+export const words = ['Bulbasaur',
 'Ivysaur',
 'Venusaur',
 'Charmander',
@@ -80,7 +80,6 @@
 'Slowbro',
 'Magnemite',
 'Magneton',
-'Farfetch'd',
 'Doduo',
 'Dodrio',
 'Seel',
