@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Letter from './Letter';
+import './word.css';
 
 class Word extends Component {
 
