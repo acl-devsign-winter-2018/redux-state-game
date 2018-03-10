@@ -1,4 +1,4 @@
-import { GAME_NEW, WORDS_LOAD, words, game } from './reducers';
+import { GAME_NEW, WORDS_LOAD, words, word } from './reducers';
 
 describe('words tests:', () => {
 
@@ -16,12 +16,12 @@ describe('words tests:', () => {
 describe('word tests:', () => {
 
   it('defaults to empty string', () => {
-    const state = game('', {});
+    const state = word('', {});
     expect(state).toEqual('');
   });
 
   it('sets a word', () => {
-    const state = game('', { type: GAME_NEW, payload: 'a' });
+    const state = word('', { type: GAME_NEW, payload: 'a' });
     expect(state).toEqual('a');
   });
 });

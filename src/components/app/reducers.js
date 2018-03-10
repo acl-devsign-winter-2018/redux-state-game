@@ -1,7 +1,7 @@
 export const GAME_NEW = 'GAME_NEW';
 export const WORDS_LOAD = 'WORDS_LOAD';
 
-export function game(state = '', { type, payload }) {
+export function word(state = '', { type, payload }) {
   switch(type) {
     case GAME_NEW:
       return payload;
