@@ -9,7 +9,7 @@ class Letter extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { guesses, letter } = this.props;
+    const { letter } = this.props;
     if(nextProps.guesses.includes(letter)) this.setState({ selected: true });
   }
 
@@ -19,9 +19,9 @@ class Letter extends Component {
     const { selected } = this.state;
 
     return (
-        <button className="letter" onClick={(event) => onSelect(event.target)} value={letter} disabled={selected ? true : false}>
-          {letter}
-        </button>
+      <button className="letter" onClick={(event) => onSelect(event.target)} value={letter} disabled={selected ? true : false}>
+        {letter}
+      </button>
 
     );
   }
