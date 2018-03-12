@@ -21,9 +21,11 @@ Use localStorage to store game data:
     * load from window.localStorage
     ```js
     export function loadPlayers() {
+      const payload = localStorage.players ? JSON.parse(localStorage.players) : [];
+      
       return {
         type: LOAD_PLAYERS,
-        payload: Promise.resolve(localStorage.players || []);
+        payload
       }
     }
 * In your `store.js`, add the following:
