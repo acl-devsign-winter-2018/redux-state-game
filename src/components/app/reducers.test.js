@@ -8,7 +8,7 @@ describe('word tests:', () => {
   });
 
   it('sets a word', () => {
-    const state = word('', { type: GAME_NEW, payload: 'a' });
+    const state = word('', { type: GAME_NEW, payload: { word: 'a' } });
     expect(state).toEqual('a');
   });
 });
