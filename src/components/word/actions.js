@@ -1,4 +1,4 @@
-import { WORDS_LOAD } from './reducers';
+import { WORDS_LOAD,  COUNT_UPDATE } from './reducers';
 import { words } from '../app/pokemonNames';
 
 export function loadWords() {
@@ -7,3 +7,11 @@ export function loadWords() {
     payload: words
   };
 } 
+
+export function updateCorrect() {
+  console.log('fired');
+  return {
+    type: COUNT_UPDATE,
+    payload: 1
+  };
+}

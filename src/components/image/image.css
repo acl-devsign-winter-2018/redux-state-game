@@ -1,6 +1,7 @@
 
 .image-box {
   position: relative;
+  z-index: -20;
   .incorrect {
     position: absolute;
     width: 50%;
