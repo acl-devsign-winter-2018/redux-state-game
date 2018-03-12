@@ -6,6 +6,6 @@ export default class Replay extends Component {
 
   state = {
 
-  }
+  };
 
 }
