@@ -16,14 +16,15 @@ class Image extends Component {
   }
 
   render() {
-    const { image, text, word, correct } = this.props;
+    const { image, text, word, correct, gameEnd } = this.props;
     const { incorrect } = this.state;
+    console.log(gameEnd);
 
     return (
       <figure>
         <div className="image-box">
           <img src={image} alt='image of pokemon you are guessing'/>
-          {(correct !== word.length) && Array(6 - incorrect).fill().map((ignore, i) => (
+          { !gameEnd && Array(6 - incorrect).fill().map((ignore, i) => (
             <span key={i} className={`incorrect incorrect-${6 - i}`}></span>
           ))}
         </div>

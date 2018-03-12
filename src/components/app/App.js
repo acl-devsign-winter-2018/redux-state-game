@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div id="container">
         <header id="header">
-          <h1></h1>
+          <h1>Guess That Pokemon!</h1>
           <div className="loader">
             <ClipLoader loading={loading}/>
             { (win && word !== '') && <Replay outcome={'win'}/>}
@@ -39,7 +39,7 @@ class App extends Component {
         <main id="main" role="main">
           { word !== '' && 
             <Fragment>
-              <Image/>
+              <Image gameEnd={win || lose}/>
               <Word gameEnd={win || lose}/>
               <Letters gameEnd={win || lose}/>
             </Fragment>
