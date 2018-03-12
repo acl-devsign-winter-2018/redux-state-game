@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../Game.css';
+import './Game.css';
 // import Square from '../square/Square';
 
 function Square(props) {

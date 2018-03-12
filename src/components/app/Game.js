@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../Game.css';
-import Board from '../board/Board';
+import './Game.css';
+import Board from './Board';
 
 class Game extends Component {
 
