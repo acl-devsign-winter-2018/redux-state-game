@@ -3,7 +3,7 @@ import { CHOICE, WIN } from './reducers';
 export function takeTurns(id){
   return (dispatch, getState) => {
 
-    let { activePlayer } = getState().game;
+    const { activePlayer } = getState().game;
     dispatch({
       type: CHOICE,
       payload: { activePlayer, id }

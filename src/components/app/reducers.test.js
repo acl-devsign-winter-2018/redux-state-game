@@ -1,4 +1,4 @@
-import { CHOICE, WIN, game } from './reducers';
+import { CHOICE, game } from './reducers';
 
 describe('game reducer', () => {
   it('should add a choice', () => {
