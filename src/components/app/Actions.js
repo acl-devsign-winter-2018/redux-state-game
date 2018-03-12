@@ -2,23 +2,17 @@ import { CHOICE, WIN } from './reducers';
 
 export function takeTurns(id){
   return (dispatch, getState) => {
-    console.log(squares);
 
-    let { squares } = getState().game;
-    console.log(squares);
+    let { activePlayer } = getState().game;
+    dispatch({
+      type: CHOICE,
+      payload: { activePlayer, id }
+    });
 
-    if(squares[id] === ''){
-      dispatch({
-        type: CHOICE,
-        payload: id
-      });
-
-    }
 
     //if not, add square value, check winner, check tie, continue or END
-    
+    const { squares } = getState().game;
     const winner = checkWinner(squares);
-    squares = getState().game.squares;
 
     if(winner !== null) {
       dispatch({
