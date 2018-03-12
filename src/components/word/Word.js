@@ -7,11 +7,11 @@ class Word extends Component {
 
 
   render() {
-    const { word } = this.props;
+    const { word, gameEnd } = this.props;
 
     return (
       <ul className="word-container">
-        {word && word.split('').map((letter, index) => <Letter key={index} letter={letter}/>)}
+        {(!gameEnd && word) && word.split('').map((letter, index) => <Letter key={index} letter={letter}/>)}
       </ul>
     );
   }

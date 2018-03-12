@@ -40,8 +40,8 @@ class App extends Component {
           { word !== '' && 
             <Fragment>
               <Image/>
-              <Word/>
-              <Letters/>
+              <Word gameEnd={win || lose}/>
+              <Letters gameEnd={win || lose}/>
             </Fragment>
           }
         </main>
