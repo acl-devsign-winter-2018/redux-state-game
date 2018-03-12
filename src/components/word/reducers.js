@@ -1,5 +1,6 @@
 export const WORDS_LOAD = 'WORDS_LOAD';
 export const COUNT_UPDATE = 'COUNT_UPDATE';
+import { GAME_NEW } from '../app/reducers';
 
 export function words(state = [], { type, payload }) {
   switch(type) {
@@ -13,10 +14,11 @@ export function words(state = [], { type, payload }) {
 export function correct(state = 0, { type, payload }) {
   switch(type) {
     case COUNT_UPDATE: {
-      console.log('updated');
       const prev = state;
       return prev + payload;
     }
+    case GAME_NEW:
+      return 0;
     default:
       return state;
   }

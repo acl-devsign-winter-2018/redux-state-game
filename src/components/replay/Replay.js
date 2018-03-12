@@ -6,7 +6,7 @@ class Replay extends Component {
 
   render() {
 
-    const { outcome } = this.props;
+    const { outcome, newGame } = this.props;
 
     return (
       <div className="replay-box">
@@ -20,6 +20,6 @@ class Replay extends Component {
 }
 
 export default connect(
-  state => ({ outcome: state.outcome }), 
+  null,
   ({ newGame })
 )(Replay);

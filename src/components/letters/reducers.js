@@ -1,4 +1,5 @@
 export const LETTER_GUESS = 'LETTER_GUESS';
+import { GAME_NEW } from '../app/reducers';
 
 export function letter(state = [], { type, payload }) {
   switch(type) {
@@ -7,7 +8,8 @@ export function letter(state = [], { type, payload }) {
         ...state,
         payload
       ];
-
+    case GAME_NEW:
+      return [];
     default:
       return state;
   }

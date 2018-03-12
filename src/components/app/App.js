@@ -8,6 +8,7 @@ import './app.css';
 import Letters from '../letters/Letters';
 import Word from '../word/Word';
 import Image from '../image/Image';
+import Replay from '../replay/Replay';
 
 
 class App extends Component {
@@ -19,7 +20,10 @@ class App extends Component {
 
   render() {
 
-    const { word, loading, error } = this.props;
+    const { word, loading, error, correct, guesses } = this.props;
+
+    const win = correct === word.length;
+    const lose = (guesses.length - correct) === 6;
 
     return (
       <div id="container">
@@ -27,6 +31,8 @@ class App extends Component {
           <h1></h1>
           <div className="loader">
             <ClipLoader loading={loading}/>
+            { (win && word !== '') && <Replay outcome={'win'}/>}
+            { lose && <Replay outcome={'lose'}/>}
           </div>
           { error && <Error error={error}/> }
         </header>
@@ -49,6 +55,8 @@ class App extends Component {
 
 export default connect(
   state => ({ 
+    correct: state.correct, 
+    guesses: state.guesses,
     word: state.word, 
     loading: state.loading,
     error: state.error }),
