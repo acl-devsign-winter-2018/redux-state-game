@@ -1,4 +1,4 @@
-export const CHOICE = 'CHIOCE';
+export const CHOICE = 'CHOICE';
 export const WIN = 'WIN';
 
 export const initialState = {
