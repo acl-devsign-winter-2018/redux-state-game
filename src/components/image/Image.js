@@ -5,20 +5,20 @@ import './image.css';
 
 class Image extends Component {
 
-  state = {
-    incorrect: 0
-  };
+  // state = {
+  //   incorrect: 0
+  // };
 
-  componentWillReceiveProps(nextProps) {
-    const { word } = this.props;
-    const mostRecentGuess = nextProps.guesses[nextProps.guesses.length - 1];
-    if(!word.includes(mostRecentGuess) && mostRecentGuess) this.setState({ incorrect: this.state.incorrect + 1 });  //if the random word includes the most recent guess, and there is a most recent guess
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const { word } = this.props;
+  //   const mostRecentGuess = nextProps.guesses[nextProps.guesses.length - 1];
+  //   if(!word.includes(mostRecentGuess) && mostRecentGuess) this.setState({ incorrect: this.state.incorrect + 1 });  //if the random word includes the most recent guess, and there is a most recent guess
+  // }
 
   render() {
-    const { image, text, word, correct, gameEnd } = this.props;
-    const { incorrect } = this.state;
-    console.log(gameEnd); //something to do with local state not updating on new game!
+    const { image, text, correct, gameEnd, guesses } = this.props;
+
+    const incorrect = guesses.length - correct;
 
     return (
       <figure>
