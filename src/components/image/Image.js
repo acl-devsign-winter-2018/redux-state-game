@@ -18,7 +18,7 @@ class Image extends Component {
   render() {
     const { image, text, word, correct, gameEnd } = this.props;
     const { incorrect } = this.state;
-    console.log(gameEnd);
+    console.log(gameEnd); //something to do with local state not updating on new game!
 
     return (
       <figure>
