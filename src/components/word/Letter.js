@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateCorrect } from './actions';
 
 class Letter extends Component {
 
@@ -8,8 +9,9 @@ class Letter extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { letter } = this.props;
-    if(nextProps.guesses.includes(letter)) this.setState({ guessed: true });
+    const { letter, updateCorrect } = this.props;
+    const mostRecentGuess = nextProps.guesses[nextProps.guesses.length - 1];
+    if(mostRecentGuess === letter) this.setState({ guessed: true }, updateCorrect);
   }
 
   render() {
@@ -26,6 +28,6 @@ class Letter extends Component {
 
 export default connect(
   state => ({ guesses: state.guesses }),
-  null
+  { updateCorrect }
 )(Letter);
 

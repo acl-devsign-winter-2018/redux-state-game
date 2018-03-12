@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { loadWords } from '../word/actions';
 import { newGame } from './actions';
+import { ClipLoader } from 'react-spinners';
+import Error from './Error';
 import './app.css';
 import Letters from '../letters/Letters';
 import Word from '../word/Word';
@@ -17,12 +19,16 @@ class App extends Component {
 
   render() {
 
-    const { word } = this.props;
+    const { word, loading, error } = this.props;
 
     return (
       <div id="container">
         <header id="header">
           <h1></h1>
+          <div className="loader">
+            <ClipLoader loading={loading}/>
+          </div>
+          { error && <Error error={error}/> }
         </header>
         <main id="main" role="main">
           { word !== '' && 
@@ -42,6 +48,9 @@ class App extends Component {
 }
 
 export default connect(
-  state => ({ word: state.word }),
+  state => ({ 
+    word: state.word, 
+    loading: state.loading,
+    error: state.error }),
   ({ loadWords, newGame })
 )(App);
