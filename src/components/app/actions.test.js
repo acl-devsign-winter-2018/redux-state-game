@@ -7,9 +7,6 @@ jest.mock('../../services/pokemonApi', () => ({
 import { GAME_NEW } from './reducers';
 import { newGame } from './actions';
 
-
-
-
 describe('game action tests:', () => {
 
   it.skip('creates new game action', () => {
