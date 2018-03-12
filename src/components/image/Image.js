@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPokemonImage, getPokemonText } from './actions';
 import './image.css';
 
 class Image extends Component {
@@ -35,5 +34,5 @@ class Image extends Component {
 
 export default connect(
   state => ({ guesses: state.guesses, word: state.word, image: state.image, text: state.text }),
-  ({ getPokemonImage, getPokemonText })
+  null
 )(Image);
