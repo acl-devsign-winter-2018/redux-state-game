@@ -1,12 +1,12 @@
 import { CHOICE, WIN } from './reducers';
 
-export function takeTurns(id){
+export function takeTurn(i){
   return (dispatch, getState) => {
 
     const { activePlayer } = getState().game;
     dispatch({
       type: CHOICE,
-      payload: { activePlayer, id }
+      payload: { activePlayer, i }
     });
 
 

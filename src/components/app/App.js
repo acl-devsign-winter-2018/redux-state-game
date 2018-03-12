@@ -19,12 +19,8 @@ export default class App extends Component {
             <main role="main" id="main">
               <Switch>
                 <Route exact path="/" component={Game}/>
-                {/* <Route path="/about" component={About}/> */}
-                {/* <Route path="/movies/:id" render={({ match }) => <MovieDetail imdbID={match.params.id}/>}/> */}
                 <Redirect to="/"/>
               </Switch>
-
-              {/* <Game/> */}
             </main>
           </div>
         </Router>

@@ -2,20 +2,24 @@ export const CHOICE = 'CHOICE';
 export const WIN = 'WIN';
 
 export const initialState = {
-  squares: Array(9).fill(''),
+  squares: Array(9).fill(null),
   activePlayer: 'X',
   nextPlayer: 'O',
-  winner: ''
+  winner: '',
+  xWins: 0,
+  oWins: 0,
+  gameOver: false
 };
 
-export function game(state = initialState, { type, payload }) {
+export default function game(state = initialState, { type, payload }) {
   switch(type) {
     case CHOICE: {
       let updatedGame = [...state.squares];
-      const { activePlayer, id } = payload;
+      const { activePlayer, i } = payload;
 
-      if(updatedGame[id] !== null) return state;
-      updatedGame[id] = activePlayer;
+      if(updatedGame[i] !== null) return state;
+      if(state.gameOver === true) return state;
+      updatedGame[i] = activePlayer;
 
       let nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
 
@@ -27,12 +31,28 @@ export function game(state = initialState, { type, payload }) {
 
     }
 
-    case WIN:
+    case WIN:{
+      if(state.gameOver === true) return state;
+
+      let xWins = state.xWins;
+      let oWins = state.oWins;
+
+      if(payload === 'X') {
+        xWins++;
+      }
+
+      if(payload === 'O') {
+        oWins++;
+      }
+
       return {
         ...state,
-        winner: payload
+        winner: payload,
+        gameOver: true,
+        xWins,
+        oWins
       };
-    
+    }
     default:
       return state;
   }

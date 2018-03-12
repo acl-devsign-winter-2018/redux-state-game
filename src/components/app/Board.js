@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Game.css';
-// import Square from '../square/Square';
-import { takeTurns } from './Actions';
+import Square from './Square';
+import { takeTurn } from './Actions';
 
-function Square(props) {
-  return (
-    <button id={props.id} className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
+
 
 class Board extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true
-    };
+  handleClick(i) {
+    this.props.takeTurn(i);
   }
 
-  handleClick(id) {
-    const squares = this.state.squares.slice();
-    squares[id] = this.state.xIsNext ? <span className="x">X</span> : <span className="o">O</span>;
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext
-    });
-  }
+  // handleReset() {
+  //   this.props.onReset();
+  // }
 
-  renderSquare(id) {
-    return <Square 
-      value={this.state.squares[id]} 
-      onClick={() => this.handleClick(id)}
-    />;
+  renderSquare(i) {
+    return (<Square 
+      value={this.props.squares[i]} 
+      index={i}
+      onClick={(y) => this.handleClick(y)}
+    />);
   }
 
   render() {
 
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const winner = (this.props.winner !== 'no winner')
+      ? <section><span>{this.props.winner} is the winner</span>
+        <button className="button" onClick={() => handleReset()}>RESET</button></section>
+      : null;
+
 
     return (
       <div>
@@ -65,6 +55,29 @@ class Board extends Component {
   }
 }
 
+
+function mapStateToProps(state) {
+  return {
+    squares: state.game.squares,
+    winner: state.game.winner,
+    xWins: state.game.xWins,
+    oWins: state.game.oWins,
+    activePlayer: state.game.activePlayer
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    takeTurn(i) {
+      dispatch(takeTurn(i));
+    },
+    // onReset() {
+    //   dispatch(resetGame());
+    // }
+  };
+}
+
 export default connect (
-  null
+  mapStateToProps,
+  mapDispatchToProps,
 )(Board);
