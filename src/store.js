@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 // import { initialState, gameReducer } from './components/app/reducers';
 // import { expensesByCategory } from './components/expenses/reducer';
 import thunk from 'redux-thunk';
-
+import { game } from './components/app/reducers';
 
 
 // combine reducer
 const reducer = combineReducers({
-
+  game
 });
 
 // extension

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Game.css';
 // import Square from '../square/Square';
+import { takeTurns } from './Actions';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button id={props.id} className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -21,19 +22,19 @@ class Board extends Component {
     };
   }
 
-  handleClick(i) {
+  handleClick(id) {
     const squares = this.state.squares.slice();
-    squares[i] = this.state.xIsNext ? <span className="x">X</span> : <span className="o">O</span>;
+    squares[id] = this.state.xIsNext ? <span className="x">X</span> : <span className="o">O</span>;
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext
     });
   }
 
-  renderSquare(i) {
+  renderSquare(id) {
     return <Square 
-      value={this.state.squares[i]} 
-      onClick={() => this.handleClick(i)}
+      value={this.state.squares[id]} 
+      onClick={() => this.handleClick(id)}
     />;
   }
 

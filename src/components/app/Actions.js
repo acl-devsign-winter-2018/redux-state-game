@@ -1,14 +1,21 @@
-import { CHOICE, WIN, activePlayer, nextPlayer } from './reducers';
+import { CHOICE, WIN } from './reducers';
 
-export function takeTurns(){
+export function takeTurns(id){
   return (dispatch, getState) => {
+    console.log(squares);
+
     let { squares } = getState().game;
-    if(nextPlayer !== activePlayer) {
+    console.log(squares);
+
+    if(squares[id] === ''){
       dispatch({
         type: CHOICE,
-        payload: activePlayer
+        payload: id
       });
-    }   
+
+    }
+
+    //if not, add square value, check winner, check tie, continue or END
     
     const winner = checkWinner(squares);
     squares = getState().game.squares;

@@ -18,8 +18,5 @@ describe('game reducer', () => {
       turns: 1,
       winner: ''
     });
-
   });
-
-
 });
