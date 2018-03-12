@@ -1,31 +1,40 @@
-export const PLAYER = 'PLAYER';
-export const NEW = 'NEW';
+export const CHOICE = 'CHIOCE';
 export const WIN = 'WIN';
 
-export function player(state = [], { type, payload }) {
+export const initialState = {
+  squares: Array(9).fill(''),
+  activePlayer: 'X',
+  turns: 0,
+  winner: ''
+};
+
+export function game(state = initialState, { type, payload }) {
   switch(type) {
-    case PLAYER: {
+    case CHOICE: {
+      let updatedGame = [...state.squares];
+      const { activePlayer } = state;
+      const nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
+      let turns = state.turns;
+
+
+      updatedGame[payload] = activePlayer;
+      turns++;
+
+      return {
+        ...state, 
+        squares: updatedGame,
+        activePlayer: nextPlayer,
+        turns: turns
+      };
 
     }
-
-    case NEW: {
-      return [];
-    }
-
-    default:
-      return state;
-  }
-}
-
-export function winner(state = null, { type, payload }) {
-  switch(type) {
     case WIN:
-      return payload;
-
-    case NEW:
-      return null;
+      return {
+        ...state,
+        winner: payload
+      };
     
     default:
       return state;
   }
-}
+} 
