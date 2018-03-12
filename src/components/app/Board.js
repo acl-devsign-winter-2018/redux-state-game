@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Game.css';
 import Square from './Square';
-import { takeTurn } from './Actions';
+import { takeTurn, reset } from './Actions';
 
 
 
@@ -12,9 +12,9 @@ class Board extends Component {
     this.props.takeTurn(i);
   }
 
-  // handleReset() {
-  //   this.props.onReset();
-  // }
+  handleReset() {
+    this.props.reset();
+  }
 
   renderSquare(i) {
     return (<Square 
@@ -26,15 +26,15 @@ class Board extends Component {
 
   render() {
 
-    const winner = (this.props.winner !== 'no winner')
+    const winResult = (this.props.winner !== 'no winner')
       ? <section><span>{this.props.winner} is the winner</span>
-        <button className="button" onClick={() => handleReset()}>RESET</button></section>
+        <button className="button" onClick={() => this.handleReset()}>RESET</button></section>
       : null;
 
 
     return (
       <div>
-        <div className="status">{status}</div>
+        <div className="status">{winResult}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -71,9 +71,9 @@ function mapDispatchToProps(dispatch) {
     takeTurn(i) {
       dispatch(takeTurn(i));
     },
-    // onReset() {
-    //   dispatch(resetGame());
-    // }
+    reset() {
+      dispatch(reset());
+    }
   };
 }
 

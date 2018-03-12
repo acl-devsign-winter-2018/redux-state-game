@@ -1,5 +1,7 @@
 export const CHOICE = 'CHOICE';
 export const WIN = 'WIN';
+export const TIE = 'TIE';
+export const RESET = 'RESET';
 
 export const initialState = {
   squares: Array(9).fill(null),
@@ -51,6 +53,32 @@ export default function game(state = initialState, { type, payload }) {
         gameOver: true,
         xWins,
         oWins
+      };
+    }
+    case TIE:
+      return {
+        ...state,
+        tie: true, 
+        gameOver: true
+      };
+    case RESET: {
+      let newActivePlayer = state.activePlayer;
+      if(state.tie === false) {
+        newActivePlayer = (state.winner === 'X') ? 'O' : 'X';
+      }
+      else {
+        newActivePlayer = (state.activePlayer === 'X') ? 'O' : 'X';
+      }
+
+      const newSquares = Array(9).fill(null);
+
+      return {
+        ...state,
+        squares: newSquares,
+        activePlayer: newActivePlayer,
+        gameOver: false,
+        tie: false,
+        winner: 'no winner'
       };
     }
     default:

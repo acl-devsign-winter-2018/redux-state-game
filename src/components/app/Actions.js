@@ -1,4 +1,4 @@
-import { CHOICE, WIN } from './reducers';
+import { CHOICE, WIN, TIE, RESET } from './reducers';
 
 export function takeTurn(i){
   return (dispatch, getState) => {
@@ -18,6 +18,12 @@ export function takeTurn(i){
       dispatch({
         type: WIN,
         payload: winner
+      });
+    }
+
+    if(squares.indexOf(null) === -1 && winner === null) {
+      dispatch({
+        type: TIE
       });
     }
   };
@@ -43,4 +49,15 @@ function checkWinner(squares) {
     }
   }
   return null;
+}
+
+export function reset() {
+  return (dispatch, getState) => {
+    const { winner } = getState().game;
+
+    dispatch({
+      type: RESET,
+      payload: winner
+    });
+  };
 }
