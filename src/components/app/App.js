@@ -29,10 +29,10 @@ class App extends Component {
       <div id="container">
         <header id="header">
           <h1>Guess That Pokemon!</h1>
+          { (win && word !== '') && <Replay outcome={'win'}/>}
+          { lose && <Replay outcome={'lose'}/>}
           <div className="loader">
             <ClipLoader loading={loading}/>
-            { (win && word !== '') && <Replay outcome={'win'}/>}
-            { lose && <Replay outcome={'lose'}/>}
           </div>
           { error && <Error error={error}/> }
         </header>
