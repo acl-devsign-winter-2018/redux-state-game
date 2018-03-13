@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Game from '../game/Game';
+// import Leaderboard from '../leaderboard/Leaderboard';
 import { connect } from 'react-redux';
 import { ClipLoader } from 'react-spinners';
 import Error from './Error';
@@ -12,21 +14,33 @@ class App extends Component {
     const { loading, error } = this.props;
 
     return (
-      <div id="container">
-        <header id="header">
-          <h1>Guess That Pokemon!</h1>
-          <div className="loader">
-            <ClipLoader loading={loading}/>
-          </div>
-          { error && <Error error={error}/> }
-        </header>
-        <main id="main" role="main">
-          <Game/>        
-        </main>
-        <footer id="footer" role="contentinfo">
-          <small>&copy; 2018 Grace Provost &amp; Charly Welch | Student Work</small>
-        </footer>
-      </div>
+      <Router>
+        <div id="container">
+          <header id="header">
+            <h1>Guess That Pokemon!</h1>
+            <nav>
+              <ul>
+                <li><Link to="/">Play</Link></li>
+                {/* <li><Link to="/leaderboard">Leaderboard</Link></li> */}
+              </ul>
+            </nav>
+            <div className="loader">
+              <ClipLoader loading={loading}/>
+            </div>
+            { error && <Error error={error}/> }
+          </header>
+          <main id="main" role="main">
+            <Switch>
+              <Route path="/" component={Game}/>
+              {/* <Route path="/leaderboard" component={Leaderboard}/> */}
+              <Redirect to="/"/>       
+            </Switch>
+          </main>
+          <footer id="footer" role="contentinfo">
+            <small>&copy; 2018 Grace Provost &amp; Charly Welch | Student Work</small>
+          </footer>
+        </div>
+      </Router>
     );
   }
 }
