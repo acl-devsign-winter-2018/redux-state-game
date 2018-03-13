@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Game.css';
-import { takeTurns, loadGame } from './Actions';
+import './game.css';
+import { takeTurns, loadGame } from './actions';
 
 
 class Histories extends Component {

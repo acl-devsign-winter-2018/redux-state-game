@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Game.css';
+import './game.css';
 import Square from './Square';
-import { takeTurn, reset } from './Actions';
+import { takeTurn, reset } from './actions';
 
 
 

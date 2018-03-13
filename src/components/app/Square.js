@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-import './Game.css';
+import './game.css';
 
 export default class Square extends Component {
   render() {
