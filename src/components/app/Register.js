@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './Game.css';
 
-class Register extends Component {
+export default class Register extends Component {
 
   state = {
     playerX: '',
@@ -12,8 +11,7 @@ class Register extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.onComplete({
-      ...this.state,
-      history: this.props.history
+      ...this.state
     })
       .then(() => {
         this.setState({
@@ -33,11 +31,11 @@ class Register extends Component {
     return (
       <div className="register">
         <form onSubmit = {this.handleSubmit}>
-          <label htmlFor="playerX">
-            <input id="playerX" name="playerX" value={playerX} onChange={this.handleChange}/>
+          <label htmlFor="playerX"> Player X
+          <input id="playerX" name="playerX" value={playerX} onChange={this.handleChange}/>
           </label>
-          <label htmlFor="playerO">
-            <input id="playerO" name="playerO" value={playerO} onChange={this.handleChange}/>
+          <label htmlFor="playerO"> Player O
+          <input id="playerO" name="playerO" value={playerO} onChange={this.handleChange}/>
           </label>
           <button type="submit">Add</button>
         </form>
@@ -45,7 +43,3 @@ class Register extends Component {
     );
   }
 }
-
-export default connect (
-  (state) => ({ history: state.history.id })
-)(Register);
