@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Game from '../game/Game';
+import Player from '../player/Player';
+
 // import Leaderboard from '../leaderboard/Leaderboard';
 import { connect } from 'react-redux';
 import { ClipLoader } from 'react-spinners';
@@ -30,6 +32,7 @@ class App extends Component {
             { error && <Error error={error}/> }
           </header>
           <main id="main" role="main">
+            <Player/>
             <Switch>
               <Route path="/" component={Game}/>
               {/* <Route path="/leaderboard" component={Leaderboard}/> */}
