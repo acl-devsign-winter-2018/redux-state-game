@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-// import Home from './home/Home';
 import Game from './Game';
+import Register from './Register';
+import History from './History';
 
 export default class App extends Component {
 
@@ -19,6 +20,8 @@ export default class App extends Component {
             <main role="main" id="main">
               <Switch>
                 <Route exact path="/" component={Game}/>
+                <Route exact path="/register" component={Register}/>
+                <Route exact path="/history" component={History}/>
                 <Redirect to="/"/>
               </Switch>
             </main>

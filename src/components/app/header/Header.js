@@ -11,9 +11,9 @@ export default class Header extends Component {
           <h1 className="logo">Title</h1>
           <nav>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              {/* <li><Link to="/about">About</Link></li> */}
-              {/* <Route path="/movies" render={() => <li>~</li>}/> */}
+              <li><Link to="/">Game</Link></li>
+              <li><Link to="/register">Register</Link></li>
+              <li><Link to="/history">History</Link></li>
             </ul>
           </nav>
         </section> 
