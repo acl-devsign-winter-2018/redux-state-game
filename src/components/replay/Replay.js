@@ -9,6 +9,7 @@ class Replay extends Component {
 
     const { outcome, newGame, word } = this.props;
 
+    console.log(word);
     return (
       <div className="replay-box">
         <h2>Your Pokemon was {word}!</h2>

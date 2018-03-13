@@ -5,7 +5,7 @@ import { letter as guesses } from '../components/letters/reducers';
 import { loading, error } from '../components/app/reducers';
 import { words, correct } from '../components/word/reducers';
 import { image, text } from '../components/image/reducers';
-import { word } from '../components/game/reducers';
+import { word, scores } from '../components/game/reducers';
 import { player } from '../components/player/reducers';
 
 const reducer = combineReducers({
@@ -17,7 +17,8 @@ const reducer = combineReducers({
   loading,
   error,
   correct,
-  player
+  player,
+  scores
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
