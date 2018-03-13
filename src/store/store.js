@@ -21,6 +21,11 @@ const reducer = combineReducers({
   scores
 });
 
+window.onbeforeunload = () => {
+  const { scores } = store.getState();
+  window.localStorage.scores = JSON.stringify(scores);
+};
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(

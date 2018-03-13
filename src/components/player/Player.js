@@ -12,6 +12,7 @@ class Player extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <legend>Enter Your Name</legend>
         <label htmlFor="name"> Player Name:
         <input name="name"/>
         </label>

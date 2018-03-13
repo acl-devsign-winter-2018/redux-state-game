@@ -10,7 +10,6 @@ class Replay extends Component {
     this.sendEndGame(player, correct, guesses);
   }
 
-
   sendEndGame = (player, correct, guesses) => {
     const score = (correct * 10) - (guesses.length);
     this.props.endGame(player, score);
