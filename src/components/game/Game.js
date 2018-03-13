@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { loadWords } from '../word/actions';
-import { newGame, endGame } from './actions';
+import { newGame } from './actions';
 import './game.css';
 import Letters from '../letters/Letters';
 import Word from '../word/Word';
@@ -15,28 +15,6 @@ class Game extends Component {
     this.props.loadWords();
     this.props.newGame();
   }
-
-  componentWillReceiveProps(nextProps) {
-    
-    const { word, correct, guesses, player } = nextProps;
-    const { scores } = this.props;
-    
-    const win = correct === word.length;
-    const lose = (guesses.length - correct) === 6;
-    if(scores) {
-      console.log(scores[scores.length - 1]);
-      console.log(nextProps.scores[nextProps.scores.length - 1]);
-    }
-
-    if(scores && scores[scores.length - 1] === nextProps.scores[nextProps.scores.length - 1]) return null;
-    if(player === '' || !win && !lose) return null;
-    else this.sendEndGame(player, correct, guesses);
-  }
-
-  sendEndGame = (player, correct, guesses) => {
-    const score = (correct * 10) - (guesses.length);
-    this.props.endGame(player, score);
-  };
 
   render() {
 
@@ -71,5 +49,5 @@ export default connect(
     player: state.player,
     scores: state.scores
   }),
-  ({ loadWords, newGame, endGame })
+  ({ loadWords, newGame })
 )(Game);
