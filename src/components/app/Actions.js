@@ -10,7 +10,6 @@ export function takeTurn(i){
     });
 
 
-    //if not, add square value, check winner, check tie, continue or END
     const { squares } = getState().game;
     const winner = checkWinner(squares);
 
@@ -57,7 +56,7 @@ export function reset() {
 
     dispatch({
       type: RESET,
-      payload: winner
+      payload: { winner }
     });
   };
 }

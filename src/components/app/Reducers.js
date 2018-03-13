@@ -2,6 +2,8 @@ export const CHOICE = 'CHOICE';
 export const WIN = 'WIN';
 export const TIE = 'TIE';
 export const RESET = 'RESET';
+export const WINNER_DISPLAY = 'WINNER_DISPLAY';
+
 
 export const initialState = {
   squares: Array(9).fill(null),
@@ -10,7 +12,8 @@ export const initialState = {
   winner: '',
   xWins: 0,
   oWins: 0,
-  gameOver: false
+  gameOver: false,
+  winResults: []
 };
 
 export default function game(state = initialState, { type, payload }) {
@@ -38,21 +41,27 @@ export default function game(state = initialState, { type, payload }) {
 
       let xWins = state.xWins;
       let oWins = state.oWins;
+      let winResults = state.winResults;
 
       if(payload === 'X') {
         xWins++;
+        // winResults.push('X won');
       }
 
       if(payload === 'O') {
         oWins++;
+        // winResults.push('O won');
       }
+
 
       return {
         ...state,
         winner: payload,
         gameOver: true,
         xWins,
-        oWins
+        oWins,
+        winResults
+
       };
     }
     case TIE:
