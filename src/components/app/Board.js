@@ -28,7 +28,7 @@ class Board extends Component {
 
     const winResult = (this.props.winner !== 'no winner')
       ? <section><span>{this.props.winner} is the winner</span>
-        <button className="button" onClick={() => this.handleReset()}>RESET</button></section>
+        <button className="reset-button" onClick={() => this.handleReset()}>RESET</button></section>
       : null;
 
 
