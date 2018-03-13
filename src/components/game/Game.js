@@ -16,14 +16,21 @@ class Game extends Component {
     this.props.newGame();
   }
 
+  sendEndGame = (player, correct, guesses) => {
+    const score = (correct * 10) - (guesses.length);
+    this.props.endGame(player, score);
+  };
+
   render() {
 
     const { word, correct, guesses, player } = this.props;
-
+    if(!player) return null;
     const win = correct === word.length;
     const lose = (guesses.length - correct) === 6;
 
-    if(!player) return null;
+    if(win || lose) this.sendEndGame(player, correct, guesses);
+
+
     return (
       <div className="game">
 

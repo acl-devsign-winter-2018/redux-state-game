@@ -1,5 +1,5 @@
 import pokemonApi from '../../services/pokemonApi';
-import { GAME_NEW } from './reducers';
+import { GAME_NEW, GAME_END } from './reducers';
 
 function getRandomWord(words) {
   return words[Math.floor(Math.random() * words.length)].toLowerCase();
@@ -19,5 +19,15 @@ export function newGame() {
       ])
         .then(([word, image, text]) => ({ word, image, text }))
     });
+  };
+}
+
+export function endGame(player, score) {
+  return {
+    type: GAME_END,
+    payload: {
+      player,
+      score
+    }
   };
 }

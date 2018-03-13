@@ -3,8 +3,8 @@ jest.mock('../../services/pokemonApi', () => ({
   getPokemonText: jest.fn(() => Promise.resolve('PAYLOAD'))
 }));
 
-import { GAME_NEW } from './reducers';
-import { newGame } from './actions';
+import { GAME_NEW, GAME_END } from './reducers';
+import { newGame, endGame } from './actions';
 
 describe('game action tests:', () => {
 
@@ -22,5 +22,11 @@ describe('game action tests:', () => {
       .then(result => {
         expect(result).toEqual({ word: 'one', image: 'PAYLOAD', text: 'PAYLOAD' });
       });
+  });
+
+  it('creates an endgame action', () => {
+    const { type, payload } = endGame('me', 20);
+    expect(type).toBe(GAME_END);
+    expect(payload).toEqual({ player: 'me', score: 20 });
   });
 });
