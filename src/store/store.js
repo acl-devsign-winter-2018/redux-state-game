@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from './promiseMiddleware';
-import { letter as guesses } from '../components/letters/reducers';
+import { letter as guesses, incorrect } from '../components/letters/reducers';
 import { loading, error } from '../components/app/reducers';
 import { words, correct } from '../components/word/reducers';
 import { image, text } from '../components/image/reducers';
@@ -17,8 +17,9 @@ const reducer = combineReducers({
   loading,
   error,
   correct,
+  incorrect,
   player,
-  scores
+  scores,
 });
 
 window.onbeforeunload = () => {
