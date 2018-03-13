@@ -1,4 +1,4 @@
-import { GAME_NEW } from '../app/reducers';
+import { GAME_NEW } from '../game/reducers';
 
 function findEnglishText(list) {
   let engEntry;
