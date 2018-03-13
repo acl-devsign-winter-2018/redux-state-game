@@ -1,6 +1,6 @@
 export const WORDS_LOAD = 'WORDS_LOAD';
 export const COUNT_UPDATE = 'COUNT_UPDATE';
-import { GAME_NEW } from '../app/reducers';
+import { GAME_NEW } from '../game/reducers';
 
 export function words(state = [], { type, payload }) {
   switch(type) {

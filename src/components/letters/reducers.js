@@ -1,5 +1,5 @@
 export const LETTER_GUESS = 'LETTER_GUESS';
-import { GAME_NEW } from '../app/reducers';
+import { GAME_NEW } from '../game/reducers';
 
 export function letter(state = [], { type, payload }) {
   switch(type) {

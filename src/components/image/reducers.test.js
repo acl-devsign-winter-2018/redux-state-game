@@ -1,5 +1,5 @@
 import { image, text } from './reducers';
-import { GAME_NEW } from '../app/reducers';
+import { GAME_NEW } from '../game/reducers';
 
 
 describe('App reducer tests', () => {
