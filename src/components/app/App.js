@@ -5,7 +5,7 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Game from './Game';
 import Register from './Register';
-import History from './History';
+import Histories from './Histories';
 
 export default class App extends Component {
 
@@ -21,7 +21,7 @@ export default class App extends Component {
               <Switch>
                 <Route exact path="/" component={Game}/>
                 <Route exact path="/register" component={Register}/>
-                <Route exact path="/history" component={History}/>
+                <Route exact path="/history" component={Histories}/>
                 <Redirect to="/"/>
               </Switch>
             </main>

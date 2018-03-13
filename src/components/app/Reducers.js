@@ -45,14 +45,13 @@ export default function game(state = initialState, { type, payload }) {
 
       if(payload === 'X') {
         xWins++;
-        // winResults.push('X won');
+        winResults.push('X won');
       }
 
       if(payload === 'O') {
         oWins++;
-        // winResults.push('O won');
+        winResults.push('O won');
       }
-
 
       return {
         ...state,
