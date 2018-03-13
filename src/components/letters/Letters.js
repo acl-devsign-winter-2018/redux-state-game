@@ -11,10 +11,11 @@ class Letters extends Component {
   };
 
   handleSelect = (guess) => {
-    const { guessLetter, word, updateIncorrect } = this.props;
+    const { guessLetter, word, updateIncorrect, incorrect, endGame } = this.props;
     const letter = guess.value;
     if(!word.includes(letter)) updateIncorrect(); 
     guessLetter(letter);
+    // if(incorrect === 6) endGame('lose');
   };
 
   render() {
@@ -30,6 +31,6 @@ class Letters extends Component {
 }
 
 export default connect(
-  state => ({ word: state.word }),
+  state => ({ word: state.word, incorrect: state.incorrect }),
   { guessLetter, updateIncorrect }
 )(Letters);

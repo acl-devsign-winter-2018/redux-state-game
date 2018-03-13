@@ -4,20 +4,8 @@ import './image.css';
 
 class Image extends Component {
 
-  state = {
-    incorrect: 0
-  };
-
-  componentWillReceiveProps(nextProps) {
-    const { word } = this.props;
-    if(word !== nextProps.word) this.setState({ incorrect: 0 }); // checks if the incoming word is different form the current word
-    const mostRecentGuess = nextProps.guesses[nextProps.guesses.length - 1];
-    if(!word.includes(mostRecentGuess) && mostRecentGuess) this.setState({ incorrect: this.state.incorrect + 1 });  //if the random word includes the most recent guess, and there is a most recent guess
-  }
-
   render() {
-    const { image, text, gameEnd } = this.props;
-    const { incorrect } = this.state;
+    const { image, text, gameEnd, incorrect } = this.props;
 
     return (
       <figure>
@@ -38,7 +26,8 @@ export default connect(
     guesses: state.guesses, 
     word: state.word, 
     image: state.image, 
-    text: state.text 
+    text: state.text,
+    incorrect: state.incorrect 
   }),
   null
 )(Image);

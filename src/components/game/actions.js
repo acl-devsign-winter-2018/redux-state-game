@@ -22,7 +22,7 @@ export function newGame() {
   };
 }
 
-export function endGame(player, score) {
+export function sendScore(player, score) {
   return {
     type: GAME_END,
     payload: {

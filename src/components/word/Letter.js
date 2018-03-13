@@ -4,19 +4,15 @@ import { updateCorrect } from './actions';
 
 class Letter extends Component {
 
-  state = {
-    guessed: false
-  };
-
   componentWillReceiveProps(nextProps) {
     const { letter, updateCorrect } = this.props;
     const mostRecentGuess = nextProps.guesses[nextProps.guesses.length - 1];
-    if(mostRecentGuess === letter) this.setState({ guessed: true }, updateCorrect); //if the most recently guessed is the letter of this component, change its state to true and then update the correct count in store. This component needs to know as sometimes there are duplicate letters in a pokemon name
+    if(mostRecentGuess === letter) updateCorrect(); //if the most recently guessed is the letter of this component, update the correct count in store. This component needs to know as sometimes there are duplicate letters in a pokemon name
   }
 
   render() {
-    const { letter } = this.props;
-    const { guessed } = this.state;
+    const { letter, guesses } = this.props;
+    const guessed = guesses.includes(letter);
 
     return (
       <li className="game-letters">

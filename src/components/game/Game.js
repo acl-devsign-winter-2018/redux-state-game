@@ -19,10 +19,10 @@ class Game extends Component {
 
   render() {
 
-    const { word, correct, incorrect, guesses, player, loading } = this.props;
+    const { word, correct, incorrect, player, loading } = this.props;
     if(!player) return null;
     const win = correct === word.length;
-    const lose = (guesses.length - incorrect) === 6; 
+    const lose = incorrect === 6; 
 
     return (
       <div className="game">
@@ -48,7 +48,6 @@ export default connect(
   state => ({ 
     loading: state.loading,
     correct: state.correct, 
-    guesses: state.guesses,
     word: state.word,
     player: state.player,
     scores: state.scores,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { newGame, endGame } from '../game/actions';
+import { newGame, sendScore } from '../game/actions';
 import './replay.css';
 
 class Replay extends Component {
@@ -12,7 +12,7 @@ class Replay extends Component {
 
   sendEndGame = (player, correct, guesses) => {
     const score = (correct * 10) - (guesses.length);
-    this.props.endGame(player, score);
+    this.props.sendScore(player, score);
   };
 
   render() {
@@ -38,5 +38,5 @@ export default connect(
     guesses: state.guesses,
     correct: state.correct
   }),
-  ({ newGame, endGame })
+  ({ newGame, sendScore })
 )(Replay);

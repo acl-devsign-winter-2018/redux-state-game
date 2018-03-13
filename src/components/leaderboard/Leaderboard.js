@@ -12,7 +12,7 @@ class Leaderboard extends Component {
 
     const { scores } = this.props;
 
-    // const sortedScores = scores.sort((a, b) => scores[a].score - scores[b].score);
+    // const sortedScores = scores.sort((a, b) => a.score - b.score);
 
     // console.log(sortedScores);
 
