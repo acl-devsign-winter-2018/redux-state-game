@@ -8,4 +8,5 @@ describe('PLayer actions tests', () => {
     expect(type).toBe(PLAYER_SET);
     expect(payload).toBe('name');
   });
+  
 });

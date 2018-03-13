@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setPlayer } from './actions';
 
 class Player extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    
+    this.props.setPlayer(event.target.elements.name.value);
   };
 
   render() {
@@ -22,5 +23,5 @@ class Player extends Component {
 
 export default connect(
   null,
-  null
+  ({ setPlayer })
 )(Player); 

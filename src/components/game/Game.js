@@ -18,22 +18,25 @@ class Game extends Component {
 
   render() {
 
-    const { word, correct, guesses } = this.props;
+    const { word, correct, guesses, player } = this.props;
 
     const win = correct === word.length;
     const lose = (guesses.length - correct) === 6;
 
+    if(!player) return null;
     return (
       <div className="game">
-        { (win && word !== '') && <Replay outcome={'win'}/>}
-        { lose && <Replay outcome={'lose'}/>}
-        { word !== '' && 
-            <Fragment>
-              <Image gameEnd={win || lose}/>
-              <Word gameEnd={win || lose}/>
-              <Letters gameEnd={win || lose}/>
-            </Fragment>
+
+        {(win && word !== '') && <Replay outcome={'win'}/>}
+        {lose && <Replay outcome={'lose'}/>}
+        {word !== '' && 
+        <Fragment>
+          <Image gameEnd={win || lose}/>
+          <Word gameEnd={win || lose}/>
+          <Letters gameEnd={win || lose}/>
+        </Fragment>
         }
+      
       </div>
     );
   }
@@ -43,7 +46,8 @@ export default connect(
   state => ({ 
     correct: state.correct, 
     guesses: state.guesses,
-    word: state.word 
+    word: state.word,
+    player: state.player 
   }),
   ({ loadWords, newGame })
 )(Game);
