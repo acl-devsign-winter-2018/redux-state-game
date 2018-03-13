@@ -4,7 +4,6 @@ import Game from '../game/Game';
 import Player from '../player/Player';
 import Leaderboard from '../leaderboard/Leaderboard';
 import { connect } from 'react-redux';
-import { ClipLoader } from 'react-spinners';
 import Error from './Error';
 import './app.css';
 
@@ -25,9 +24,6 @@ class App extends Component {
                 <li><Link to="/leaderboard">Leaderboard</Link></li>
               </ul>
             </nav>
-            <div className="loader">
-              <ClipLoader loading={loading}/>
-            </div>
             { error && <Error error={error}/> }
           </header>
           <main id="main" role="main">
