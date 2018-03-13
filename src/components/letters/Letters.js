@@ -16,6 +16,7 @@ class Letters extends Component {
     if(!word.includes(letter)) updateIncorrect(); 
     guessLetter(letter);
     // if(incorrect === 6) endGame('lose');
+    // to fix where the endgame lives
   };
 
   render() {
