@@ -21,4 +21,10 @@ const store = createStore(
     applyMiddleware(thunk) 
   ));
 
+window.onbeforeunload = () => {
+  const { games } = store.getState();
+  // window.localStorage.players = players;
+  window.localStorage.games = games;
+};
+
 export default store;

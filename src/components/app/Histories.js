@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Game.css';
-import { takeTurns } from './Actions';
+import { takeTurns, loadGame } from './Actions';
 
 
 class Histories extends Component {
+
+  componentDidMount() {
+    this.props.loadGame();
+  }
 
   render() {
     const { winResults } = this.props;
@@ -21,5 +25,5 @@ class Histories extends Component {
 
 export default connect (
   ({ game }) => ({ winResults: game.winResults }),
-  { takeTurns }
+  { takeTurns, loadGame }
 )(Histories);

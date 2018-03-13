@@ -8,6 +8,7 @@ import { takeTurn, reset } from './Actions';
 
 class Board extends Component {
 
+
   handleClick(i) {
     this.props.takeTurn(i);
   }
@@ -62,7 +63,7 @@ function mapStateToProps(state) {
     winner: state.game.winner,
     xWins: state.game.xWins,
     oWins: state.game.oWins,
-    activePlayer: state.game.activePlayer
+    activePlayer: state.game.activePlayer,
   };
 }
 

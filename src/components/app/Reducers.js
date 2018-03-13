@@ -3,6 +3,8 @@ export const WIN = 'WIN';
 export const TIE = 'TIE';
 export const RESET = 'RESET';
 export const WINNER_DISPLAY = 'WINNER_DISPLAY';
+export const LOAD_GAME = 'LOAD_GAME';
+export const END_GAME = 'END_GAME';
 
 
 export const initialState = {
@@ -93,3 +95,14 @@ export default function game(state = initialState, { type, payload }) {
       return state;
   }
 } 
+
+export function gameLoad(state = [], { type, payload }) {
+  switch(type) {
+    case END_GAME:
+      return [...state, payload];
+    case LOAD_GAME: 
+      return payload.winResults;
+    default:
+      return state;
+  }
+}

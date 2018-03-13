@@ -1,4 +1,4 @@
-import { CHOICE, WIN, TIE, RESET } from './reducers';
+import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
 
 export function takeTurn(i){
   return (dispatch, getState) => {
@@ -12,7 +12,6 @@ export function takeTurn(i){
 
     const { squares } = getState().game;
     const winner = checkWinner(squares);
-
     if(winner !== null) {
       dispatch({
         type: WIN,
@@ -25,6 +24,16 @@ export function takeTurn(i){
         type: TIE
       });
     }
+
+    const { winResults } = getState().game;
+
+    dispatch({
+      type: END_GAME,
+      payload: {
+        timestamp: new Date(),
+        winResults
+      }
+    });
   };
 }
 
@@ -60,3 +69,13 @@ export function reset() {
     });
   };
 }
+
+export const loadGame = () => {
+  const games = window.localStorage.games;
+  if(!games) return;
+
+  return {
+    type: LOAD_GAME,
+    payload: JSON.parse(games)
+  };
+};
