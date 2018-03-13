@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from './promiseMiddleware';
 import { letter as guesses } from '../components/letters/reducers';
-import { word, loading, error } from '../components/app/reducers';
+import { loading, error } from '../components/app/reducers';
 import { words, correct } from '../components/word/reducers';
 import { image, text } from '../components/image/reducers';
+import { word } from '../components/game/reducers';
+import { player } from '../components/player/reducers';
 
 const reducer = combineReducers({
   guesses,
@@ -14,7 +16,8 @@ const reducer = combineReducers({
   text,
   loading,
   error,
-  correct
+  correct,
+  player
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

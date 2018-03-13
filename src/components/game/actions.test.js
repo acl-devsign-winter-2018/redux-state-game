@@ -10,10 +10,16 @@ import { newGame } from './actions';
 describe('game action tests:', () => {
 
   it.skip('creates new game action', () => {
-    const { type, payload } = newGame();
-    expect(type).toBe(GAME_NEW);
-    return payload.then(result => {
-      expect(result).toBe({ word: 'PAYLOAD', image: 'PAYLOAD', text: 'PAYLOAD' });
-    });
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({
+      words: ['one', 'two']
+    }));
+    const result = newGame();
+
+    result(dispatch, getState);
+    expect(dispatch).toHaveBeenCalledWith({ type: GAME_NEW, payload: {} });
+    // return payload.then(result => {
+    //   expect(result).toBe({ word: 'PAYLOAD', image: 'PAYLOAD', text: 'PAYLOAD' });
+    // });
   });
 });

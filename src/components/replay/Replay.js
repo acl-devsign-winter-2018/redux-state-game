@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { newGame } from '../app/actions';
+import { newGame } from '../game/actions';
 import './replay.css';
 
 class Replay extends Component {
