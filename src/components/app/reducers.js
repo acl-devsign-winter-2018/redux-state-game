@@ -61,14 +61,21 @@ export function game(state = initialState, { type, payload }) {
   }
 } 
 
+
 export function gameLoad(state = [], { type, payload }) {
   switch(type) {
 
     case END_GAME:
-      return [...state, payload];
+      return {
+        ...state.game.winResults,
+        payload
+      };
 
     case LOAD_GAME: 
-      return payload;
+      return {
+        ...state,
+        payload
+      };
 
     default:
       return state;

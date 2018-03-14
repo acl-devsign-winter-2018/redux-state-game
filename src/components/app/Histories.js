@@ -24,8 +24,8 @@ class Histories extends Component {
 
 
 export default connect (
-  ({ game }) => ({ 
-    winResults: game.winResults
+  state => ({ 
+    winResults: state.game.winResults
   }),
   { takeTurns, loadGame }
 )(Histories);

@@ -3,14 +3,18 @@ import './game.css';
 
 export default class Register extends Component {
 
-  state = {
-    playerX: '',
-    playerO: ''
-  };
+  constructor(props){
+    super(props);
+
+    this.state = {
+      playerX: '',
+      playerO: ''
+    };
+  }
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onComplete({
+    this.props.onSubmit({
       ...this.state
     })
       .then(() => {
@@ -31,10 +35,10 @@ export default class Register extends Component {
     return (
       <div className="register">
         <form onSubmit = {this.handleSubmit}>
-          <label htmlFor="playerX"> Player X
+          <label htmlFor="playerX"> Player X Name:
           <input id="playerX" name="playerX" value={playerX} onChange={this.handleChange}/>
           </label>
-          <label htmlFor="playerO"> Player O
+          <label htmlFor="playerO"> Player O Name:
           <input id="playerO" name="playerO" value={playerO} onChange={this.handleChange}/>
           </label>
           <button type="submit">Add</button>

@@ -69,12 +69,13 @@ export function reset() {
 
 export function endGame() {
   return (dispatch, getState) => {
-    const { winResults } = getState().game;
+    const { winResults, winner } = getState().game;
     dispatch({
       type: END_GAME,
       payload: {
         timestamp: new Date(),
-        winResults
+        winResults,
+        winner
       }
     });
   };
@@ -108,7 +109,7 @@ function checkWinner(squares) {
 
 
 export const loadGame = () => {
-  const payload = window.localStorage.games ? JSON.parse(localStorage.games) : [];
+  const payload = localStorage.games ? JSON.parse(localStorage.games) : [];
 
   return {
     type: LOAD_GAME,
