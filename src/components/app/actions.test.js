@@ -1,35 +1,38 @@
 import { CHOICE } from './reducers';
 import { takeTurn } from './actions';
 
-it.skip('should creates CHOICE action', () => {
-  const testState = {
-    game: {
-      squares: Array(9).fill(null),
-      activePlayer: 'X',
-      winner: ''
-    }
-  };
+describe.skip('choice actions', () => {
 
-  const dispatch = jest.fn();
-  const getState = jest.fn(() => (testState));
+  it.skip('should creates CHOICE action', () => {
+    const testState = {
+      game: {
+        squares: Array(9).fill(null),
+        activePlayer: 'X',
+        winner: ''
+      }
+    };
 
-  const result =  takeTurn(5);
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => (testState));
 
-  result(dispatch, getState);
+    const result =  takeTurn(5);
 
-  expect(dispatch.mock.calls[0][0].type).toBe(CHOICE);
-  expect(dispatch.mock.calls[0][0].payload).toEqual({ 
-    activePlayer: 'O', 
-    squares: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      'X',
-      null,
-      null,
-      null
-    ]
+    result(dispatch, getState);
+
+    expect(dispatch.mock.calls[0][0].type).toBe(CHOICE);
+    expect(dispatch.mock.calls[0][0].payload).toEqual({ 
+      activePlayer: 'O', 
+      squares: [
+        null,
+        null,
+        null,
+        null,
+        null,
+        'X',
+        null,
+        null,
+        null
+      ]
+    });
   });
 });
