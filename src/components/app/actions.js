@@ -35,6 +35,14 @@ export function takeTurn(i) {
         type: WIN,
         payload: winner
       });
+      dispatch({
+        type: END_GAME,
+        payload: {
+          timestamp: new Date(),
+          winResults,
+          winner
+        }
+      });
     }
 
     // tie
@@ -43,6 +51,7 @@ export function takeTurn(i) {
         type: TIE
       });
     }
+
   };
 }
 
@@ -67,19 +76,19 @@ export function reset() {
 }
 
 
-export function endGame() {
-  return (dispatch, getState) => {
-    const { winResults, winner } = getState().game;
-    dispatch({
-      type: END_GAME,
-      payload: {
-        timestamp: new Date(),
-        winResults,
-        winner
-      }
-    });
-  };
-}
+// export function endGame() {
+//   return (dispatch, getState) => {
+//     const { winResults, winner } = getState().game;
+//     dispatch({
+//       type: END_GAME,
+//       payload: {
+//         timestamp: new Date(),
+//         winResults,
+//         winner
+//       }
+//     });
+//   };
+// }
 
 
 
@@ -117,8 +126,8 @@ export const loadGame = () => {
   };
 };
 
-const endGame = () => {
-  return (dispatch, getState) => {
+// const endGame = () => {
+//   return (dispatch, getState) => {
     
-  }
-}
+//   }
+// }

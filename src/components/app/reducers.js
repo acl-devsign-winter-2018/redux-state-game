@@ -67,8 +67,8 @@ export function gameLoad(state = [], { type, payload }) {
 
     case END_GAME:
       return {
-        ...state.game.winResults,
-        payload
+        state,
+        ...payload
       };
 
     case LOAD_GAME: 

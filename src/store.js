@@ -24,7 +24,7 @@ const store = createStore(
 window.onbeforeunload = () => {
   const { gameLoad } = store.getState();
   // window.localStorage.players = players;
-  window.localStorage.games = gameLoad;
+  window.localStorage.games = JSON.stringify(gameLoad);
 };
 
 export default store;
