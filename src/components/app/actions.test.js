@@ -1,7 +1,7 @@
 import { CHOICE } from './reducers';
 import { takeTurn } from './actions';
 
-it('should creates CHOICE action', () => {
+it.skip('should creates CHOICE action', () => {
   const testState = {
     game: {
       squares: Array(9).fill(null),
