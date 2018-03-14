@@ -12,6 +12,39 @@
 #header { grid-area: header; }
 #main { grid-area: main; } 
 #footer { grid-area: footer; }
+#main {
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 80%;
+}
+#header {
+  padding: 1rem;
+  h1 {
+    font-size: 1.7em;
+    text-align: center;
+    padding-top: 1rem;
+  }
+  ul {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2em;
+    border: .1rem solid black;
+    li + li {
+      border-left: .1rem solid black;
+    }
+    li {
+      width: 100%;
+      a {
+        display: block;
+        text-align: center;
+        &:hover {
+          color: white;
+          background-color: $red;
+        }
+      }
+    }
+  }
+}
 
 .loader {
   position: absolute;

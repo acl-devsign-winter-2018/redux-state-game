@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Letter from './Letter';
 import { guessLetter, updateIncorrect } from './actions';
 import { endGame } from '../game/actions';
+import './letters.css';
 
 
 class Letters extends Component {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Game from '../game/Game';
-import Player from '../player/Player';
 import Leaderboard from '../leaderboard/Leaderboard';
 import { connect } from 'react-redux';
 import Error from './Error';
@@ -11,7 +10,7 @@ class App extends Component {
 
   render() {
 
-    const { error, player } = this.props;
+    const { error } = this.props;
 
     return (
       <Router>
@@ -21,13 +20,12 @@ class App extends Component {
             <nav>
               <ul>
                 <li><Link to="/">Play</Link></li>
-                <li><Link to="/leaderboard">Leaderboard</Link></li>
+                <li><Link to="/leaderboard">Scores</Link></li>
               </ul>
             </nav>
             {error && <Error error={error}/> }
           </header>
           <main id="main" role="main">
-            {player ? <h2>Current Player: {player}</h2> : <Player/>}
             <Switch>
               <Route exact path="/" component={Game}/>
               <Route path="/leaderboard" component={Leaderboard}/>
@@ -44,8 +42,6 @@ class App extends Component {
 }
 
 export default connect(
-  state => ({ 
-    error: state.error,
-    player: state.player }),
+  state => ({ error: state.error }),
   null
 )(App);

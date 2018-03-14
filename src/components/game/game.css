@@ -1,0 +1,7 @@
+@import '../../styles/variables.css';
+
+.game {
+  background: $light-grey;
+  border-radius: .5rem;
+  padding: 1rem;
+}

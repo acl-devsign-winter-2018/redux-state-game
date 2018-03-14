@@ -1,10 +1,11 @@
 
 .image-box {
   position: relative;
-  z-index: -20;
+  max-width: 350px;
+  margin: 0 auto;
   .incorrect {
     position: absolute;
-    width: 50%;
+    width: 51%;
     background: white;
     height: 33.333%
   }
@@ -32,4 +33,9 @@
     bottom: 0;
     right: 0;
   }
+}
+
+figcaption {
+  margin-top: 1rem;
+  text-align: center;
 }
