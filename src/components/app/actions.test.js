@@ -1,7 +1,7 @@
 import { CHOICE } from './reducers';
 import { takeTurn } from './actions';
 
-it.skip('should creates CHOICE action', async() => {
+it('should creates CHOICE action', () => {
   const testState = {
     game: {
       squares: Array(9).fill(null),
@@ -13,10 +13,23 @@ it.skip('should creates CHOICE action', async() => {
   const dispatch = jest.fn();
   const getState = jest.fn(() => (testState));
 
-  const result = await takeTurn(5);
+  const result =  takeTurn(5);
 
-  await result(dispatch, getState);
+  result(dispatch, getState);
 
   expect(dispatch.mock.calls[0][0].type).toBe(CHOICE);
-  expect(dispatch.mock.calls[0][0].payload).toEqual({ activePlayer: 'X', i: 5 });
+  expect(dispatch.mock.calls[0][0].payload).toEqual({ 
+    activePlayer: 'O', 
+    squares: [
+      null,
+      null,
+      null,
+      null,
+      null,
+      'X',
+      null,
+      null,
+      null
+    ]
+  });
 });
