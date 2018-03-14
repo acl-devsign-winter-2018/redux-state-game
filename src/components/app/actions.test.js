@@ -10,8 +10,8 @@ it.skip('creates CHOICE action', () => {
     winner: ''
   };
 
-  const { type, payload, squares } = takeTurns(5);
-  console.log('*********', squares);
+  // const { type, payload, squares } = takeTurns(5);
+  // console.log('*********', squares);
 
-  expect(type).toBe(CHOICE);
+  // expect(type).toBe(CHOICE);
 });
