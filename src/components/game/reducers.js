@@ -7,7 +7,6 @@ export function word(state = '', { type, payload }) {
   switch(type) {
     case GAME_NEW:
       return payload.word;
-      
     default:
       return state;
   }
@@ -17,11 +16,12 @@ export function scores(state = [], { type, payload }) {
   switch(type) {
     case SCORES_LOAD:
       return payload;
-    case GAME_END:
-      return [
-        ...state,
-        payload
-      ];
+    // case GAME_END:
+    //   return [
+    //     ...state,
+    //     payload
+    //   ];
+    // don't need any more since fb is keeping?
     default:
       return state;
   }

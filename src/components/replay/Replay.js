@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { newGame, sendScore } from '../game/actions';
+import { newGame, endGame } from '../game/actions';
 import './replay.css';
 
 class Replay extends Component {
 
-  componentDidMount() {
-    const { player, correct, guesses } = this.props;
-    this.sendEndGame(player, correct, guesses);
-  }
+  // componentDidMount() {
+  //   const { player, correct, guesses } = this.props;
+  //   this.sendEndGame(player, correct, guesses);
+  // }
 
-  sendEndGame = (player, correct, guesses) => {
-    const score = (correct * 10) - (guesses.length);
-    this.props.sendScore(player, score);
-  };
+  // sendEndGame = (player, correct, guesses) => {
+  //   const score = (correct * 10) - (guesses.length);
+  //   this.props.endGame(player, score);
+  // };
 
   render() {
 
@@ -38,5 +38,5 @@ export default connect(
     guesses: state.guesses,
     correct: state.correct
   }),
-  ({ newGame, sendScore })
+  ({ newGame, endGame })
 )(Replay);
