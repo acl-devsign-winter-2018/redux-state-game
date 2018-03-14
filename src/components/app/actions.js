@@ -41,6 +41,7 @@ import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
 export function takeTurn(i) {
   return (dispatch, getState) => {
 
+    // choice 
     const { activePlayer, gameOver, squares, winResults } = getState().game;
     let updatedGame = [...squares];
   
@@ -50,6 +51,7 @@ export function takeTurn(i) {
 
     let nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
 
+    // dispatch new payload - win
     dispatch({
       type: CHOICE,
       payload: { activePlayer:nextPlayer, squares: updatedGame }
@@ -73,17 +75,17 @@ export function takeTurn(i) {
       });
     }
 
-  };
-}
-
-export function tie() {
-  return (dispatch, getState) => {
-    const { squares, winner } = getState().game;
-    if(squares.indexOf(null) === -1 && winner === null) {
+    // tie
+    if(newSquares.indexOf(null) === -1 && winner === null) {
       dispatch({
         type: TIE
       });
     }
+
+    // reset
+
+
+
   };
 }
 
