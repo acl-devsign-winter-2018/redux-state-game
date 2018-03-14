@@ -10,5 +10,9 @@
     background-color: $red;
     color: white;
     border-radius: .5rem;
+    &:disabled {
+      background-color: $darkest-red;
+      color: $red;
+    }
   }
 }

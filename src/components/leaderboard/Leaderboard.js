@@ -21,6 +21,7 @@ class Leaderboard extends Component {
             <tr>
               <th>Name</th>
               <th>Score</th>
+              <th>Pokemon</th>
               <th>Outcome</th>
             </tr>
             {scores.map((score) => {
@@ -28,6 +29,7 @@ class Leaderboard extends Component {
                 <tr key={score.key}>
                   <td>{score.player}</td>
                   <td>{score.score}</td>
+                  <td>{score.word}</td>
                   <td>{score.outcome}</td>
                 </tr>
               );
