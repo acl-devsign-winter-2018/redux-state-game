@@ -120,7 +120,7 @@ export const loadGame = () => {
 
   return {
     type: LOAD_GAME,
-    payload: resultsRef.then(data => {
+    payload: resultsRef.once('value').then(data => {
       const results = data.val();
       if(!results) return [];
 

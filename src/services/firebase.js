@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 export const config = {
-  apiKey: 'AIzaSyBG3dW2288lVtdRS251ELOgp_Ai_DZGhnw',
-  authDomain: 'state-game-65cfa.firebaseapp.com',
-  databaseURL: 'https://state-game-65cfa.firebaseio.com',
-  projectId: 'state-game-65cfa',
-  storageBucket: 'state-game-65cfa.appspot.com',
-  messagingSenderId: '407430903082'
+  apiKey: 'AIzaSyAbfk546OMbDpnT1e3_o5cAnPjhRdELpuk',
+  authDomain: 'redux-game-9ed6b.firebaseapp.com',
+  databaseURL: 'https://redux-game-9ed6b.firebaseio.com',
+  projectId: 'redux-game-9ed6b',
+  storageBucket: '',
+  messagingSenderId: '753102463477'
 };
 
 const firebaseApp = firebase.initializeApp(config);
