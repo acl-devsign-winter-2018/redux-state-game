@@ -6,11 +6,11 @@ import './word.css';
 class Word extends Component {
 
   render() {
-    const { word, gameEnd } = this.props;
+    const { word } = this.props;
 
     return (
       <ul className="word-container">
-        {(!gameEnd && word) && word.split('').map((letter, index) => <Letter key={index} letter={letter}/>)}
+        {word.split('').map((letter, index) => <Letter key={index} letter={letter}/>)}
       </ul>
     );
   }

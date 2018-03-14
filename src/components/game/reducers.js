@@ -25,6 +25,8 @@ export function gameResult(state = null, { type, payload }) {
   switch(type) {
     case GAME_END:
       return payload;
+    case GAME_NEW:
+      return null;
     default:
       return state;
   }

@@ -19,24 +19,27 @@ class Game extends Component {
 
   render() {
 
-    const { word, correct, incorrect, player, loading } = this.props;
+    const { word, player, loading, gameResult } = this.props;
     if(!player) return null;
-    const win = correct === word.length;
-    const lose = incorrect === 6; 
+    const gameEnd = gameResult !== null;
 
     return (
       <div className="game">
         <div className="loader">
           <ClipLoader loading={loading}/>
         </div>
-        {(win && word !== '') && <Replay outcome={'win'}/>}
-        {lose && <Replay outcome={'lose'}/>}
+        {(gameResult === 'win') && <Replay outcome={'win'}/>}
+        {(gameResult === 'lose') && <Replay outcome={'lose'}/>}
         {word !== '' && 
-        <Fragment>
-          <Image gameEnd={win || lose}/>
-          <Word gameEnd={win || lose}/>
-          <Letters gameEnd={win || lose}/>
-        </Fragment>
+          <Fragment>
+            <Image gameEnd={gameEnd}/>
+            {gameResult === null &&
+              <Fragment>
+                <Word/>
+                <Letters/>
+              </Fragment>
+            }
+          </Fragment>
         }
       
       </div>
@@ -51,7 +54,8 @@ export default connect(
     word: state.word,
     player: state.player,
     scores: state.scores,
-    incorrect: state.incorrect
+    incorrect: state.incorrect,
+    gameResult: state.gameResult
   }),
   ({ loadWords, newGame })
 )(Game);

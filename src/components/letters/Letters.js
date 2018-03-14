@@ -26,11 +26,10 @@ class Letters extends Component {
 
   render() {
     const { alphabet } = this.state;
-    const { gameEnd } = this.props;
 
     return (
       <div className="letters-container">
-        { !gameEnd && alphabet.map(letter => <Letter key={letter} letter={letter} onSelect={this.handleSelect}/>)}
+        {alphabet.map(letter => <Letter key={letter} letter={letter} onSelect={this.handleSelect}/>)}
       </div>
     );
   }

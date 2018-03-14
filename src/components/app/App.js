@@ -11,7 +11,7 @@ class App extends Component {
 
   render() {
 
-    const { loading, error, player } = this.props;
+    const { error, player } = this.props;
 
     return (
       <Router>
@@ -24,7 +24,7 @@ class App extends Component {
                 <li><Link to="/leaderboard">Leaderboard</Link></li>
               </ul>
             </nav>
-            { error && <Error error={error}/> }
+            {error && <Error error={error}/> }
           </header>
           <main id="main" role="main">
             {player ? <h2>Current Player: {player}</h2> : <Player/>}
@@ -45,7 +45,6 @@ class App extends Component {
 
 export default connect(
   state => ({ 
-    loading: state.loading,
     error: state.error,
     player: state.player }),
   null

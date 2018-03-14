@@ -20,9 +20,9 @@ class Leaderboard extends Component {
             <th>Score</th>
             <th>Outcome</th>
           </tr>
-          {scores.map((score, index) => {
+          {scores.map((score) => {
             return (
-              <tr key={index}>
+              <tr key={score.key}>
                 <td>{score.player}</td>
                 <td>{score.score}</td>
                 <td>{score.outcome}</td>
