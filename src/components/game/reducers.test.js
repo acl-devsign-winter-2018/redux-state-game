@@ -1,4 +1,4 @@
-import { GAME_NEW, GAME_END, word, scores } from './reducers';
+import { GAME_NEW, SCORES_LOAD, word, scores } from './reducers';
 
 describe('word tests:', () => {
 
@@ -15,8 +15,9 @@ describe('word tests:', () => {
 });
 
 describe('scores tests:', () => {
+
   it('sets a endgame score', () => {
-    const state = scores([], { type: GAME_END, payload: { player: 'me', score: 20 } });
+    const state = scores([], { type: SCORES_LOAD, payload: [{ player: 'me', score: 20 }] });
     expect(state).toEqual([{ player: 'me', score: 20 }]);
   });
 });

@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 export const config = {
-  apiKey: "AIzaSyAdzahA9sPJmrJkJ0vpF3r2AMSvoY4wMMw",
-  authDomain: "poke-hang.firebaseapp.com",
-  databaseURL: "https://poke-hang.firebaseio.com",
-  projectId: "poke-hang",
-  storageBucket: "poke-hang.appspot.com",
-  messagingSenderId: "336129779503"
+  apiKey: 'AIzaSyAdzahA9sPJmrJkJ0vpF3r2AMSvoY4wMMw',
+  authDomain: 'poke-hang.firebaseapp.com',
+  databaseURL: 'https://poke-hang.firebaseio.com',
+  projectId: 'poke-hang',
+  storageBucket: 'poke-hang.appspot.com',
+  messagingSenderId: '336129779503'
 };
 
 const firebaseApp = firebase.initializeApp(config);
