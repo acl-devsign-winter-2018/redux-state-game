@@ -81,3 +81,12 @@ export function gameLoad(state = [], { type, payload }) {
       return state;
   }
 }
+
+// export function gameResults(state = [], { type, payload }) {
+//   switch(type) {
+//     case END_GAME:
+//       return [...state, payload];
+//     default:
+//       return state;
+//   }
+// }

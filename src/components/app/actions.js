@@ -116,3 +116,9 @@ export const loadGame = () => {
     payload
   };
 };
+
+const endGame = () => {
+  return (dispatch, getState) => {
+    
+  }
+}
