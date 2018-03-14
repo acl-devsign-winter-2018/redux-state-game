@@ -41,7 +41,7 @@ import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
 export function takeTurn(i) {
   return (dispatch, getState) => {
 
-    const { activePlayer, gameOver, squares, xWins, oWins, winResults } = getState().game;
+    const { activePlayer, gameOver, squares, winResults } = getState().game;
     let updatedGame = [...squares];
   
     if(updatedGame[i] !== null) return;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './game.css';
-import { takeTurns, loadGame, winner } from './actions';
+import { takeTurns, loadGame } from './actions';
 
 
 class Histories extends Component {
@@ -11,7 +11,7 @@ class Histories extends Component {
   }
 
   render() {
-    const { winResults, winner } = this.props;
+    const { winResults } = this.props;
   
     return (
       <div className="history">
