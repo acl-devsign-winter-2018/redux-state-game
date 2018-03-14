@@ -27,8 +27,8 @@ class Board extends Component {
 
   render() {
 
-    const winResult = (this.props.winnerDisplay !== 'no winner')
-      ? <section><span>{this.props.winnerDisplay} is the winner</span>
+    const winResult = (this.props.winner !== 'no winner')
+      ? <section><span>{this.props.winner} is the winner</span>
         <button className="reset-button" onClick={() => this.handleReset()}>RESET</button></section>
       : null;
 
@@ -60,7 +60,7 @@ class Board extends Component {
 function mapStateToProps(state) {
   return {
     squares: state.game.squares,
-    winnerDisplay: state.game.winnerDisplay,
+    winner: state.game.winner,
     xWins: state.game.xWins,
     oWins: state.game.oWins,
     activePlayer: state.game.activePlayer,

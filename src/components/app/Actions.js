@@ -37,31 +37,48 @@ import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
 //   };
 // }
 
-export const initialState = {
-  squares: Array(9).fill(null),
-  activePlayer: 'X',
-  nextPlayer: 'O',
-  winner: '',
-  xWins: 0,
-  oWins: 0,
-  gameOver: false,
-  winResults: []
-};
 
 export function takeTurn(i) {
   return (dispatch, getState) => {
 
-    const { activePlayer } = getState().game;
+    const { activePlayer, gameOver, squares, xWins, oWins, winResults } = getState().game;
+    let updatedGame = [...squares];
+  
+    if(updatedGame[i] !== null) return;
+    if(gameOver === true) return;
+    updatedGame[i] = activePlayer;
+
+    let nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
+
     dispatch({
       type: CHOICE,
-      payload: { activePlayer, i }
+      payload: { activePlayer:nextPlayer, squares: updatedGame }
     });
+
+    const newSquares = getState().game.squares;
+    const winner = checkWinner(newSquares);
+    
+    if(winner === 'X') {
+      winResults.push('X won');
+    }
+    
+    if(winner === 'O') {
+      winResults.push('O won');
+    }
+    
+    if(winner !== null) {
+      dispatch({
+        type: WIN,
+        payload: winner
+      });
+    }
+
   };
 }
 
 export function tie() {
   return (dispatch, getState) => {
-    const { squares } = getState().game;
+    const { squares, winner } = getState().game;
     if(squares.indexOf(null) === -1 && winner === null) {
       dispatch({
         type: TIE
@@ -83,35 +100,8 @@ export function endGame() {
   };
 }
 
-export function winnerDisplay(state) {
-  return (dispatch, getState) => {
-    let { squares, xWins, oWins, winResults } = getState().game;
-    const winner = checkWinner(squares);
 
-    if(state.gameOver === true) return state;
 
-    xWins = state.xWins;
-    oWins = state.oWins;
-    winResults = state.winResults;
-
-    if(winner === 'X') {
-      xWins++;
-      winResults.push('X won');
-    }
-
-    if(winner === 'O') {
-      oWins++;
-      winResults.push('O won');
-    }
-    
-    if(winner !== null) {
-      dispatch({
-        type: WIN,
-        payload: winner
-      });
-    }
-  };
-}
 
 
 function checkWinner(squares) {

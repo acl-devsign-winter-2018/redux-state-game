@@ -21,56 +21,33 @@ export const initialState = {
 export default function game(state = initialState, { type, payload }) {
   switch(type) {
     case CHOICE: {
-      let updatedGame = [...state.squares];
-      const { activePlayer, i } = payload;
-
-      if(updatedGame[i] !== null) return state;
-      if(state.gameOver === true) return state;
-      updatedGame[i] = activePlayer;
-
-      let nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
-
       return {
         ...state, 
-        squares: updatedGame,
-        activePlayer: nextPlayer
+        ...payload
       };
-
     }
 
     case WIN:{
-      // if(state.gameOver === true) return state;
 
-      // let xWins = state.xWins;
-      // let oWins = state.oWins;
-      // let winResults = state.winResults;
-
-      // if(payload === 'X') {
-      //   xWins++;
-      //   winResults.push('X won');
-      // }
-
-      // if(payload === 'O') {
-      //   oWins++;
-      //   winResults.push('O won');
-      // }
+      const xWins = payload === 'X' ? ++state.xWins : state.xWins;
+      const oWins = payload === 'O' ? ++state.oWins : state.oWins;
 
       return {
         ...state,
         winner: payload,
         gameOver: true,
         xWins,
-        oWins,
-        winResults
-
+        oWins
       };
     }
+
     case TIE:
       return {
         ...state,
         tie: true, 
         gameOver: true
       };
+
     case RESET: {
       let newActivePlayer = state.activePlayer;
       if(state.tie === false) {
