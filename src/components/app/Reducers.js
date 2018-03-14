@@ -39,21 +39,21 @@ export default function game(state = initialState, { type, payload }) {
     }
 
     case WIN:{
-      if(state.gameOver === true) return state;
+      // if(state.gameOver === true) return state;
 
-      let xWins = state.xWins;
-      let oWins = state.oWins;
-      let winResults = state.winResults;
+      // let xWins = state.xWins;
+      // let oWins = state.oWins;
+      // let winResults = state.winResults;
 
-      if(payload === 'X') {
-        xWins++;
-        winResults.push('X won');
-      }
+      // if(payload === 'X') {
+      //   xWins++;
+      //   winResults.push('X won');
+      // }
 
-      if(payload === 'O') {
-        oWins++;
-        winResults.push('O won');
-      }
+      // if(payload === 'O') {
+      //   oWins++;
+      //   winResults.push('O won');
+      // }
 
       return {
         ...state,

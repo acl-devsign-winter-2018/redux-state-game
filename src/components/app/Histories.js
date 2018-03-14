@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './game.css';
-import { takeTurns, loadGame } from './actions';
+import { takeTurns, loadGame, winner } from './actions';
 
 
 class Histories extends Component {
@@ -11,7 +11,7 @@ class Histories extends Component {
   }
 
   render() {
-    const { winResults } = this.props;
+    const { winResults, winner } = this.props;
   
     return (
       <div className="history">
@@ -24,6 +24,9 @@ class Histories extends Component {
 
 
 export default connect (
-  ({ game }) => ({ winResults: game.winResults }),
+  ({ game }) => ({ 
+    winResults: game.winResults,
+    winner: game.winner
+  }),
   { takeTurns, loadGame }
 )(Histories);

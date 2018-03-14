@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './game.css';
 import Square from './Square';
-import { takeTurn, reset } from './actions';
+import { takeTurn, reset, winner } from './actions';
 
 
 
@@ -27,8 +27,8 @@ class Board extends Component {
 
   render() {
 
-    const winResult = (this.props.winner !== 'no winner')
-      ? <section><span>{this.props.winner} is the winner</span>
+    const winResult = (this.props.winnerDisplay !== 'no winner')
+      ? <section><span>{this.props.winnerDisplay} is the winner</span>
         <button className="reset-button" onClick={() => this.handleReset()}>RESET</button></section>
       : null;
 
@@ -60,7 +60,7 @@ class Board extends Component {
 function mapStateToProps(state) {
   return {
     squares: state.game.squares,
-    winner: state.game.winner,
+    winnerDisplay: state.game.winnerDisplay,
     xWins: state.game.xWins,
     oWins: state.game.oWins,
     activePlayer: state.game.activePlayer,
