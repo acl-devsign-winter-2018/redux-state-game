@@ -12,22 +12,20 @@ class Leaderboard extends Component {
 
     const { scores } = this.props;
 
-    // const sortedScores = scores.sort((a, b) => a.score - b.score);
-
-    // console.log(sortedScores);
-
     return (
       <table>
         <tbody>
           <tr>
             <th>Name</th>
             <th>Score</th>
+            <th>Outcome</th>
           </tr>
           {scores.map((score, index) => {
             return (
               <tr key={index}>
                 <td>{score.player}</td>
                 <td>{score.score}</td>
+                <td>{score.outcome}</td>
               </tr>
             );
           })}
