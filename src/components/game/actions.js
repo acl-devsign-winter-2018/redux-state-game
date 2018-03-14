@@ -26,7 +26,6 @@ export function newGame() {
 }
 
 export function endGame(outcome) {
-  console.log('fired endGame');
   return (dispatch, getState) => {
     const { player, incorrect, correct } = getState();
 
@@ -37,7 +36,6 @@ export function endGame(outcome) {
       score,
       outcome
     };
-    console.log(scoreToSave);
 
     newRef.set(scoreToSave).then(()=>{
       dispatch({

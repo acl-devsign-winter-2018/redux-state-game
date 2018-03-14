@@ -24,7 +24,6 @@ export function scores(state = [], { type, payload }) {
 export function gameResult(state = null, { type, payload }) {
   switch(type) {
     case GAME_END:
-      console.log('fired gameResult');
       return payload;
     default:
       return state;

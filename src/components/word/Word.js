@@ -5,7 +5,6 @@ import './word.css';
 
 class Word extends Component {
 
-
   render() {
     const { word, gameEnd } = this.props;
 
@@ -17,6 +16,6 @@ class Word extends Component {
   }
 }
 export default connect(
-  state => ({ word: state.word }),
+  state => ({ word: state.word, correct: state.correct }),
   null
 )(Word);

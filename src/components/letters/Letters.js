@@ -19,8 +19,9 @@ class Letters extends Component {
   };
   
   componentDidUpdate() {
-    const { incorrect, endGame } = this.props;
+    const { incorrect, endGame, correct, word } = this.props;
     if(incorrect === 6) endGame('lose');
+    if(correct === word.length) endGame('win');
   }
 
   render() {
@@ -36,6 +37,6 @@ class Letters extends Component {
 }
 
 export default connect(
-  state => ({ word: state.word, incorrect: state.incorrect }),
+  state => ({ word: state.word, incorrect: state.incorrect, correct: state.correct }),
   { guessLetter, updateIncorrect, endGame }
 )(Letters);
