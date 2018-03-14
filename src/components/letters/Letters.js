@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Letter from './Letter';
 import { guessLetter, updateIncorrect } from './actions';
+import { endGame } from '../game/actions';
 
 
 class Letters extends Component {
@@ -11,13 +12,16 @@ class Letters extends Component {
   };
 
   handleSelect = (guess) => {
-    const { guessLetter, word, updateIncorrect, incorrect, endGame } = this.props;
+    const { guessLetter, word, updateIncorrect } = this.props;
     const letter = guess.value;
     if(!word.includes(letter)) updateIncorrect(); 
     guessLetter(letter);
-    // if(incorrect === 6) endGame('lose');
-    // to fix where the endgame lives
   };
+  
+  componentDidUpdate() {
+    const { incorrect, endGame } = this.props;
+    if(incorrect === 6) endGame('lose');
+  }
 
   render() {
     const { alphabet } = this.state;
@@ -33,5 +37,5 @@ class Letters extends Component {
 
 export default connect(
   state => ({ word: state.word, incorrect: state.incorrect }),
-  { guessLetter, updateIncorrect }
+  { guessLetter, updateIncorrect, endGame }
 )(Letters);

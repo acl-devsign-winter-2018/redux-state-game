@@ -16,12 +16,16 @@ export function scores(state = [], { type, payload }) {
   switch(type) {
     case SCORES_LOAD:
       return payload;
-    // case GAME_END:
-    //   return [
-    //     ...state,
-    //     payload
-    //   ];
-    // don't need any more since fb is keeping?
+    default:
+      return state;
+  }
+}
+
+export function gameResult(state = null, { type, payload }) {
+  switch(type) {
+    case GAME_END:
+      console.log('fired gameResult');
+      return payload;
     default:
       return state;
   }

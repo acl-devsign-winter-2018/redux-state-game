@@ -15,9 +15,9 @@ export function loadLeaderboard() {
       if(!scores) return [];
   
       const scoresSorted = Object.keys(scores).map(key => {
-        const match = scores[key];
-        match.key = key;
-        return match;
+        const score = scores[key];
+        score.key = key;
+        return score;
       });
       scoresSorted.sort((a, b) => b.score - a.score);
 

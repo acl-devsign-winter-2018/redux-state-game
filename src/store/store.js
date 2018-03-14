@@ -5,7 +5,7 @@ import { letter as guesses, incorrect } from '../components/letters/reducers';
 import { loading, error } from '../components/app/reducers';
 import { words, correct } from '../components/word/reducers';
 import { image, text } from '../components/image/reducers';
-import { word, scores } from '../components/game/reducers';
+import { word, scores, gameResult } from '../components/game/reducers';
 import { player } from '../components/player/reducers';
 
 const reducer = combineReducers({
@@ -20,6 +20,7 @@ const reducer = combineReducers({
   incorrect,
   player,
   scores,
+  gameResult
 });
 
 window.onbeforeunload = () => {

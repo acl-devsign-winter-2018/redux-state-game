@@ -25,25 +25,21 @@ export function newGame() {
   };
 }
 
-export function endGame(player, score, outcome) {
+export function endGame(outcome) {
+  console.log('fired endGame');
+  return (dispatch, getState) => {
+    const { player, incorrect, correct } = getState();
 
-  return dispatch => {
+    const score = (correct * 10) - (incorrect * 5);
     const newRef = scoresRef.push();
     const scoreToSave = {
       player,
       score,
       outcome
     };
+    console.log(scoreToSave);
 
-    // return dispatch({
-    //   type: MATCH_END,
-    //   payload: newRef.set(match).then(() => {
-    //     match.key = newRef.key;
-    //     return match;
-    //   })
-    // });
     newRef.set(scoreToSave).then(()=>{
-      scoreToSave.key = newRef.key;
       dispatch({
         type: GAME_END,
         payload: outcome
