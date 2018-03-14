@@ -1,5 +1,5 @@
 import { CHOICE } from './reducers';
-import game from './reducers';
+import { game } from './reducers';
 
 describe('game reducer', () => {
 
@@ -9,9 +9,10 @@ describe('game reducer', () => {
   });
 
   it('should add a choice', () => {
-    const state = game(undefined, { type: CHOICE, payload:1 });
-    expect(state.activePlayer).toBe('O');
-    expect(state.squares[1]).toBe('X');  
+    const newSquares = Array(9).fill(null);
+    newSquares[1] = 'X';
+    const state = game(undefined, { type: CHOICE, payload: { squares:newSquares } });
+    expect(state.squares[1]).toBe('X');
   });
 
 });
