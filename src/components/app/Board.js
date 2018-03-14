@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './game.css';
 import Square from './Square';
-import { takeTurn, reset, winner } from './actions';
+import { takeTurn, reset } from './actions';
 
 
 

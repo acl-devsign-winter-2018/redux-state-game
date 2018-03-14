@@ -15,6 +15,7 @@ export const initialState = {
   xWins: 0,
   oWins: 0,
   gameOver: false,
+  tie: false,
   winResults: []
 };
 
@@ -28,10 +29,8 @@ export default function game(state = initialState, { type, payload }) {
     }
 
     case WIN:{
-
       const xWins = payload === 'X' ? ++state.xWins : state.xWins;
       const oWins = payload === 'O' ? ++state.oWins : state.oWins;
-
       return {
         ...state,
         winner: payload,
@@ -49,25 +48,15 @@ export default function game(state = initialState, { type, payload }) {
       };
 
     case RESET: {
-      let newActivePlayer = state.activePlayer;
-      if(state.tie === false) {
-        newActivePlayer = (state.winner === 'X') ? 'O' : 'X';
-      }
-      else {
-        newActivePlayer = (state.activePlayer === 'X') ? 'O' : 'X';
-      }
-
-      const newSquares = Array(9).fill(null);
-
       return {
         ...state,
-        squares: newSquares,
-        activePlayer: newActivePlayer,
+        ...payload,
         gameOver: false,
         tie: false,
         winner: 'no winner'
       };
     }
+
     default:
       return state;
   }

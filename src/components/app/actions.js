@@ -1,43 +1,5 @@
 import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
 
-// export function takeTurn(i){
-//   return (dispatch, getState) => {
-
-//     const { activePlayer } = getState().game;
-//     dispatch({
-//       type: CHOICE,
-//       payload: { activePlayer, i }
-//     });
-
-
-//     const { squares } = getState().game;
-//     const winner = checkWinner(squares);
-//     if(winner !== null) {
-//       dispatch({
-//         type: WIN,
-//         payload: winner
-//       });
-//     }
-
-//     if(squares.indexOf(null) === -1 && winner === null) {
-//       dispatch({
-//         type: TIE
-//       });
-//     }
-
-//     const { winResults } = getState().game;
-
-//     dispatch({
-//       type: END_GAME,
-//       payload: {
-//         timestamp: new Date(),
-//         winResults
-//       }
-//     });
-//   };
-// }
-
-
 export function takeTurn(i) {
   return (dispatch, getState) => {
 
@@ -81,13 +43,29 @@ export function takeTurn(i) {
         type: TIE
       });
     }
-
-    // reset
-
-
-
   };
 }
+
+export function reset() {
+  return (dispatch, getState) => {
+    const { winner, activePlayer, tie } = getState().game;
+    const cleanSquares = Array(9).fill(null);
+
+    let newActivePlayer = activePlayer;
+    if(tie === false) {
+      newActivePlayer = (winner === 'X') ? 'O' : 'X';
+    }
+    else {
+      newActivePlayer = (activePlayer === 'X') ? 'O' : 'X';
+    }
+
+    dispatch({
+      type: RESET,
+      payload: { winner, activePlayer:newActivePlayer, squares: cleanSquares }
+    });
+  };
+}
+
 
 export function endGame() {
   return (dispatch, getState) => {
@@ -127,16 +105,7 @@ function checkWinner(squares) {
   return null;
 }
 
-export function reset() {
-  return (dispatch, getState) => {
-    const { winner } = getState().game;
 
-    dispatch({
-      type: RESET,
-      payload: { winner }
-    });
-  };
-}
 
 export const loadGame = () => {
   const games = window.localStorage.games;
