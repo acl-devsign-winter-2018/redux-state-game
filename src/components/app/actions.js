@@ -108,11 +108,10 @@ function checkWinner(squares) {
 
 
 export const loadGame = () => {
-  const games = window.localStorage.games;
-  if(!games) return;
+  const payload = window.localStorage.games ? JSON.parse(localStorage.games) : [];
 
   return {
     type: LOAD_GAME,
-    payload: JSON.parse(games)
+    payload
   };
 };

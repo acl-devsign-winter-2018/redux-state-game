@@ -2,13 +2,13 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 // import { initialState, gameReducer } from './components/app/reducers';
 // import { expensesByCategory } from './components/expenses/reducer';
 import thunk from 'redux-thunk';
-import game from './components/app/reducers';
+import { game, gameLoad } from './components/app/reducers';
 
 
 // combine reducer
 const reducer = combineReducers({
-  game
-
+  game,
+  gameLoad
 });
 
 // extension
@@ -22,9 +22,9 @@ const store = createStore(
   ));
 
 window.onbeforeunload = () => {
-  const { games } = store.getState();
+  const { gameLoad } = store.getState();
   // window.localStorage.players = players;
-  window.localStorage.games = games;
+  window.localStorage.games = gameLoad;
 };
 
 export default store;

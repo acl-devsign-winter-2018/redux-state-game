@@ -10,7 +10,6 @@ export const END_GAME = 'END_GAME';
 export const initialState = {
   squares: Array(9).fill(null),
   activePlayer: 'X',
-  nextPlayer: 'O',
   winner: '',
   xWins: 0,
   oWins: 0,
@@ -19,7 +18,7 @@ export const initialState = {
   winResults: []
 };
 
-export default function game(state = initialState, { type, payload }) {
+export function game(state = initialState, { type, payload }) {
   switch(type) {
     case CHOICE: {
       return {
@@ -69,8 +68,8 @@ export function gameLoad(state = [], { type, payload }) {
       return [...state, payload];
 
     case LOAD_GAME: 
-      return payload.winResults;
-      
+      return payload;
+
     default:
       return state;
   }
