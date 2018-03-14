@@ -55,16 +55,20 @@ export function game(state = initialState, { type, payload }) {
         winner: 'no winner'
       };
     }
-
+    case END_GAME:
+      return {
+        ...state,
+        payload
+      };
     default:
       return state;
   }
 } 
 
-
+//being called at store.js
 export function gameLoad(state = [], { type, payload }) {
   switch(type) {
-
+    
     case END_GAME:
       return {
         state,

@@ -1,4 +1,7 @@
 import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
+import { db } from '../../services/firebase';
+const resultsRef = db.ref('results');
+
 
 export function takeTurn(i) {
   return (dispatch, getState) => {
@@ -35,6 +38,7 @@ export function takeTurn(i) {
         type: WIN,
         payload: winner
       });
+      //being called at histories.js
       dispatch({
         type: END_GAME,
         payload: {
@@ -43,6 +47,7 @@ export function takeTurn(i) {
           winner
         }
       });
+      dispatch(endGame());
     }
 
     // tie
@@ -76,21 +81,6 @@ export function reset() {
 }
 
 
-// export function endGame() {
-//   return (dispatch, getState) => {
-//     const { winResults, winner } = getState().game;
-//     dispatch({
-//       type: END_GAME,
-//       payload: {
-//         timestamp: new Date(),
-//         winResults,
-//         winner
-//       }
-//     });
-//   };
-// }
-
-
 
 
 
@@ -117,17 +107,50 @@ function checkWinner(squares) {
 
 
 
+// export const loadGame = () => {
+//   const payload = localStorage.games ? JSON.parse(localStorage.games) : [];
+
+//   return {
+//     type: LOAD_GAME,
+//     payload
+//   };
+// };
+
 export const loadGame = () => {
-  const payload = localStorage.games ? JSON.parse(localStorage.games) : [];
 
   return {
     type: LOAD_GAME,
-    payload
+    payload: resultsRef.then(data => {
+      const results = data.val();
+      if(!results) return [];
+
+      return Object.keys(results).map(key => {
+        const result = results[key];
+        result.key = key;
+        return result;
+      });
+    })
   };
 };
 
-// const endGame = () => {
-//   return (dispatch, getState) => {
-    
-//   }
-// }
+
+const endGame = () => {
+  return (dispatch, getState) => {
+    const { winResults } = getState().game;
+    const result = {
+      score: winResults,
+      winResults: winResults.length
+    };
+
+    const newRef = resultsRef.push();
+
+    return dispatch({
+      type: END_GAME, 
+      payload: newRef.set(result).then(() => {
+        result.key = newRef.key;
+        return result;
+      })
+    });
+  };
+
+};
