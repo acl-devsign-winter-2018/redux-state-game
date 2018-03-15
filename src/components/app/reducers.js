@@ -77,7 +77,7 @@ export function gameLoad(state = [], { type, payload }) {
 
     case LOAD_GAME: 
       return {
-        ...state,
+       
         payload
       };
 

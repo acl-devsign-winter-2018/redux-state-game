@@ -116,7 +116,7 @@ function checkWinner(squares) {
 //   };
 // };
 
-export const loadGame = () => {
+export function loadGame() {
 
   return {
     type: LOAD_GAME,
@@ -131,10 +131,10 @@ export const loadGame = () => {
       });
     })
   };
-};
+}
 
 
-const endGame = () => {
+export function endGame() {
   return (dispatch, getState) => {
     const { winResults } = getState().game;
     const result = {
@@ -144,7 +144,7 @@ const endGame = () => {
 
     const newRef = resultsRef.push();
 
-    return dispatch({
+    dispatch({
       type: END_GAME, 
       payload: newRef.set(result).then(() => {
         result.key = newRef.key;
@@ -153,4 +153,4 @@ const endGame = () => {
     });
   };
 
-};
+}
