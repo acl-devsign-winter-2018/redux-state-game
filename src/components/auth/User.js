@@ -18,10 +18,16 @@ class User extends PureComponent {
       password: elements.password.value
     };
 
+    console.log(location.state);
+
     const { from } = location.state || { from: { pathname: '/' } };
     
     this.props.onSubmit(credentials)
-      .then(() => history.push(from))
+      .then(() => {
+        setTimeout(() => {
+          history.push(from); //allows firebase to send the auth token prior to page move!
+        }, 100);
+      })
       .catch(error => this.setState({ error }));
   };
 
