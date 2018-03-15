@@ -25,7 +25,7 @@ class Game extends Component {
 
     return (
       <Fragment>
-        {player ? <h2 className="player-name">Current Player: {player}</h2> : <Player/>}
+        {player ? <h2 className="player-name">Current Player: {player.name}</h2> : <Player/>}
         {player && 
           <div className="game">
             <div className="loader">
@@ -56,7 +56,7 @@ export default connect(
     loading: state.loading,
     correct: state.correct, 
     word: state.word,
-    player: state.player,
+    player: state.user,
     scores: state.scores,
     incorrect: state.incorrect,
     gameResult: state.gameResult

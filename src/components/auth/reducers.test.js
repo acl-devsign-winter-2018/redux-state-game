@@ -7,9 +7,9 @@ describe('User tests', () => {
     expect(state).toEqual(null);
   });
 
-  it('assigns user name', () => {
-    const state = user('name', {});
-    expect(state).toEqual('name');
+  it('assigns user object', () => {
+    const state = user({}, {});
+    expect(state).toEqual({});
   });
 
 });

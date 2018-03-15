@@ -44,7 +44,6 @@ class App extends Component {
             {error && <Error error={error}/> }
           </header>
           <main id="main" role="main">
-            {user ? <pre>{JSON.stringify(user.email, true, 2)}</pre> : 'no user'}
             <Switch>
               <PrivateRoute exact path="/game" component={Game}/>
               <Route exact path="/leaderboard" component={Leaderboard}/>
