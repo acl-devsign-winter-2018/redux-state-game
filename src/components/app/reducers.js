@@ -5,7 +5,7 @@ export const RESET = 'RESET';
 export const WINNER_DISPLAY = 'WINNER_DISPLAY';
 export const LOAD_GAME = 'LOAD_GAME';
 export const END_GAME = 'END_GAME';
-
+export const ADD_PLAYERS = 'ADD_PLAYERS';
 
 export const initialState = {
   squares: Array(9).fill(null),
@@ -59,6 +59,11 @@ export function game(state = initialState, { type, payload }) {
       return {
         ...state,
         payload
+      };
+    case ADD_PLAYERS:
+      return {
+        ...state,
+        ...payload
       };
     default:
       return state;
