@@ -1,26 +1,25 @@
-import { auth } from '../../services/firebase';
 import { USER_SET } from './reducers';
+import { onUserStateChange, onSignUp, onSignIn, onSignOut } from '../../services/gameApi';
 
 export function listenForUser() {
   return dispatch => {
-    auth.onAuthStateChanged(user => {
-      if(user) user.name = user.email.split('@')[0];
+    onUserStateChange(user =>
       dispatch({
         type: USER_SET,
         payload: user
-      });
-    });
+      })
+    );
   };
 }
 
 export function signup({ email, password }) {
-  return () => auth.createUserWithEmailAndPassword(email, password);
+  return () => onSignUp(email, password);
 }
 
 export function signin({ email, password }) {
-  return () => auth.signInWithEmailAndPassword(email, password);
+  return () => onSignIn(email, password);
 }
 
 export function logout() {
-  return () => auth.signOut();
+  return () => onSignOut();
 }
