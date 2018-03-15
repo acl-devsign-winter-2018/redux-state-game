@@ -19,7 +19,7 @@ class Histories extends PureComponent {
       <div className="history">
         <h3>Players History</h3>
         { results.length ?
-          <ul>
+          <ul className="result-ul">
             {results.map(result => (
               <li key={result.key}>{result.score}</li>
             ))}
@@ -32,8 +32,13 @@ class Histories extends PureComponent {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    results: state.gameLoad.payload
+  };
+}
 
 export default connect (
-  ({ results }) => ({ results }),
+  mapStateToProps,
   { takeTurns, loadGame }
 )(Histories);
