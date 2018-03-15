@@ -1,10 +1,31 @@
 import { SCORES_LOAD } from '../game/reducers';
+import { db } from '../../services/firebase';
+
+const scoresRef = db.ref('scores').orderByChild('score').limitToLast(5);
+let listening = false;
 
 export function loadLeaderboard() {
-  const payload = localStorage.scores ? JSON.parse(localStorage.scores) : [];
 
-  return {
-    type: SCORES_LOAD,
-    payload
+  return dispatch =>  {
+    if(listening) return;
+    listening = true;
+
+    scoresRef.on('value', data => {
+      const scores = data.val();
+      if(!scores) return [];
+  
+      const scoresSorted = Object.keys(scores).map(key => {
+        const score = scores[key];
+        score.key = key;
+        return score;
+      });
+      scoresSorted.sort((a, b) => b.score - a.score);
+
+      dispatch({
+        type: SCORES_LOAD,
+        payload: scoresSorted
+      });
+    });
+
   };
 }

@@ -7,7 +7,6 @@ export function word(state = '', { type, payload }) {
   switch(type) {
     case GAME_NEW:
       return payload.word;
-      
     default:
       return state;
   }
@@ -17,11 +16,17 @@ export function scores(state = [], { type, payload }) {
   switch(type) {
     case SCORES_LOAD:
       return payload;
+    default:
+      return state;
+  }
+}
+
+export function gameResult(state = null, { type, payload }) {
+  switch(type) {
     case GAME_END:
-      return [
-        ...state,
-        payload
-      ];
+      return payload;
+    case GAME_NEW:
+      return null;
     default:
       return state;
   }

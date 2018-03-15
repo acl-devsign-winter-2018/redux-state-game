@@ -1,5 +1,8 @@
 import pokemonApi from '../../services/pokemonApi';
 import { GAME_NEW, GAME_END } from './reducers';
+import { db } from '../../services/firebase';
+
+const scoresRef = db.ref('scores');
 
 function getRandomWord(words) {
   return words[Math.floor(Math.random() * words.length)].toLowerCase();
@@ -22,12 +25,24 @@ export function newGame() {
   };
 }
 
-export function endGame(player, score) {
-  return {
-    type: GAME_END,
-    payload: {
+export function endGame(outcome) {
+  return (dispatch, getState) => {
+    const { player, incorrect, correct } = getState();
+
+    const score = (correct * 10) - (incorrect * 5);
+    const newRef = scoresRef.push();
+    const scoreToSave = {
       player,
-      score
-    }
+      score,
+      outcome
+    };
+
+    newRef.set(scoreToSave).then(()=>{
+      dispatch({
+        type: GAME_END,
+        payload: outcome
+      });
+    });
+
   };
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setPlayer } from './actions';
+import './player.css';
 
 class Player extends Component {
 
@@ -11,8 +12,8 @@ class Player extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <legend>Enter Your Name</legend>
+      <form className="player-form" onSubmit={this.handleSubmit}>
+        <legend className="clip">Enter Your Name</legend>
         <label htmlFor="name"> Player Name:
         <input name="name"/>
         </label>

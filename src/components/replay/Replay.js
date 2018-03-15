@@ -5,16 +5,6 @@ import './replay.css';
 
 class Replay extends Component {
 
-  componentDidMount() {
-    const { player, correct, guesses } = this.props;
-    this.sendEndGame(player, correct, guesses);
-  }
-
-  sendEndGame = (player, correct, guesses) => {
-    const score = (correct * 10) - (guesses.length);
-    this.props.endGame(player, score);
-  };
-
   render() {
 
     const { outcome, newGame, word } = this.props;
