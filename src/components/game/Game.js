@@ -20,17 +20,16 @@ class Game extends Component {
 
   render() {
 
-    const { word, player, loading, gameResult } = this.props;
+    const { word, loading, gameResult } = this.props;
     const gameEnd = gameResult !== null;
 
     return (
       <Fragment>
-        {player ? <h2 className="player-name">Current Player: {player.name}</h2> : <Player/>}
-        {player && 
+        <div className="loader">
+          <ClipLoader size={65} loading={loading}/>
+        </div>
+        {word && 
           <div className="game">
-            <div className="loader">
-              <ClipLoader loading={loading}/>
-            </div>
             {(gameResult === 'win') && <Replay outcome={'win'}/>}
             {(gameResult === 'lose') && <Replay outcome={'lose'}/>}
             {word !== '' && 

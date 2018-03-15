@@ -1,0 +1,44 @@
+@import '../../../styles/variables.css';
+
+#header {
+  padding: 1rem;
+  h1 {
+    font-size: 1.7em;
+    text-align: center;
+    padding-top: 1rem;
+  }
+  .user-header {
+    text-align: right;
+    margin-bottom: 1rem;
+    h3 {
+      font-size: 1em;
+      margin-bottom: .3rem;
+    }
+    a {
+      color: $darkest-red;
+    }
+  }
+  nav {
+    ul {
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.2em;
+      border: .1rem solid black;
+      li + li {
+        border-left: .1rem solid black;
+      }
+      li {
+        width: 100%;
+        a {
+          display: block;
+          text-align: center;
+          color: $darkest-red;
+          &:hover {
+            color: white;
+            background-color: $red;
+          }
+        }
+      }
+    }
+  }
+}

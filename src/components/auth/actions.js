@@ -4,7 +4,7 @@ import { USER_SET } from './reducers';
 export function listenForUser() {
   return dispatch => {
     auth.onAuthStateChanged(user => {
-      user.name = user.email.split('@')[0];
+      if(user) user.name = user.email.split('@')[0];
       dispatch({
         type: USER_SET,
         payload: user
