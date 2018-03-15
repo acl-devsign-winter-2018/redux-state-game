@@ -1,10 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import promiseMiddleware from './promiseMiddleware';
 import thunk from 'redux-thunk';
-import { game } from './component/reducers';
+import { game, players } from './component/reducers';
+import { db } from './services/firebase';
+
+const playersNode = db.ref('players');
 
 
 const reducer = combineReducers({
-  game
+  game,
+  players
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -12,8 +17,18 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(
+      thunk,
+      promiseMiddleware
+    )
+
   )
 );
+
+// window.onbeforeunload = () => {
+//   const { players } = store.getState().players;
+  
+//   playersNode.push(players);
+// };
 
 export default store;
