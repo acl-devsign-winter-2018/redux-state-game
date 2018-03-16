@@ -1,9 +1,13 @@
 import { CHOICE } from './reducers';
 import { takeTurn } from './actions';
 
-describe.skip('choice actions', () => {
+jest.mock('../../services/resultsApi', () => ({
+  results: jest.fn()
+}));
 
-  it.skip('should creates CHOICE action', () => {
+describe('choice actions', () => {
+
+  it('should creates CHOICE action', () => {
     const testState = {
       game: {
         squares: Array(9).fill(null),

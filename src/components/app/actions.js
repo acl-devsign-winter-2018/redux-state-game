@@ -1,6 +1,6 @@
 import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME, ADD_PLAYERS } from './reducers';
-import { db } from '../../services/firebase';
-const resultsRef = db.ref('results');
+import { results } from '../../services/resultsApi';
+const resultsRef = results();
 
 
 export function takeTurn(i) {
