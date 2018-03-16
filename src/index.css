@@ -1,0 +1,155 @@
+html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  height: auto;
+  padding: 2rem;
+  font-weight: bolder;
+  background-color: #8dd1d6;
+  border-bottom: 4px solid #D53500;
+}
+
+img {
+  position: right;
+
+}
+body {
+  text-align: center;
+  background: white;
+  color: black;
+}
+
+.clip {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.square {
+  float: left;
+  width: 90px;
+  height: 80px;
+  margin: 0;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
+  /* box-shadow:0px 0px -10px -10px rgba(0, 0, 0, 0.651); */
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.596);
+  
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.winner {
+  font-size: 1.5rem;
+  font-style: bolder;
+  color:#D53500;
+  margin-bottom: 2px;
+}
+
+.tie {
+  font-size: 1.5rem;
+  font-style: bolder;
+  color:#D53500;
+  margin-bottom: 2px;
+
+}
+button {
+  margin-top: 10px;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px 1px 1px 1px;
+  color: #D53500;
+  background-color: #8dd1d6;
+  text-transform: uppercase;
+  padding: .3rem .5rem;
+  transition: 0.3s ease all;
+  .button {
+    display: flex;
+    align-self: flex-end;
+  }
+  cursor: pointer;
+  &:hover {
+    background-color: #61b8cc;
+  }
+}
+
+ul {
+  font-family: sans-serif;
+  background-color: rgba(213, 53, 0, 0.842);
+  box-shadow: inset 0 0 25px #000000;
+  border: 2px solid rgba(0, 0, 0, 0.651);
+  margin-left: 15rem;
+  margin-right: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  padding: 20px;
+  list-style-type: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color:#D53500;
+  text-shadow: 2px 2px 2px #000;
+}
+
+footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: .5rem;
+  text-align: center;
+  background-color:#8dd1d6;
+  border-top: 3px solid #D53500;
+}
+
+ul.nav li a {
+  text-decoration: none;
+  font-family: helvetica bold;
+  font-size: 20px;
+  color: white;
+}
+
+ul.nav li {
+  display: inline;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul.nav {
+  // background-color: white;
+  // box-shadow: none;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+div#homepage p {
+  margin-top: 30px;
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 18px;
+
+}
