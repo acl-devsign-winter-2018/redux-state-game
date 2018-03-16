@@ -5,7 +5,7 @@ export const RESET = 'RESET';
 export const WINNER_DISPLAY = 'WINNER_DISPLAY';
 export const LOAD_GAME = 'LOAD_GAME';
 export const END_GAME = 'END_GAME';
-
+export const ADD_PLAYERS = 'ADD_PLAYERS';
 
 export const initialState = {
   squares: Array(9).fill(null),
@@ -55,25 +55,34 @@ export function game(state = initialState, { type, payload }) {
         winner: 'no winner'
       };
     }
-
+    case END_GAME:
+      return {
+        ...state,
+        payload
+      };
+    case ADD_PLAYERS:
+      return {
+        ...state,
+        ...payload
+      };
     default:
       return state;
   }
 } 
 
-
+//being called at store.js
 export function gameLoad(state = [], { type, payload }) {
   switch(type) {
-
+    
     case END_GAME:
       return {
-        ...state.game.winResults,
-        payload
+        state,
+        ...payload
       };
 
     case LOAD_GAME: 
       return {
-        ...state,
+       
         payload
       };
 
@@ -81,3 +90,12 @@ export function gameLoad(state = [], { type, payload }) {
       return state;
   }
 }
+
+// export function gameResults(state = [], { type, payload }) {
+//   switch(type) {
+//     case END_GAME:
+//       return [...state, payload];
+//     default:
+//       return state;
+//   }
+// }

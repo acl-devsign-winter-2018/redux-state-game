@@ -1,4 +1,7 @@
-import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME } from './reducers';
+import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME, ADD_PLAYERS } from './reducers';
+import { results } from '../../services/resultsApi';
+const resultsRef = results();
+
 
 export function takeTurn(i) {
   return (dispatch, getState) => {
@@ -35,6 +38,16 @@ export function takeTurn(i) {
         type: WIN,
         payload: winner
       });
+      //being called at histories.js
+      dispatch({
+        type: END_GAME,
+        payload: {
+          timestamp: new Date(),
+          winResults,
+          winner
+        }
+      });
+      dispatch(endGame());
     }
 
     // tie
@@ -43,6 +56,7 @@ export function takeTurn(i) {
         type: TIE
       });
     }
+
   };
 }
 
@@ -62,21 +76,6 @@ export function reset() {
     dispatch({
       type: RESET,
       payload: { winner, activePlayer:newActivePlayer, squares: cleanSquares }
-    });
-  };
-}
-
-
-export function endGame() {
-  return (dispatch, getState) => {
-    const { winResults, winner } = getState().game;
-    dispatch({
-      type: END_GAME,
-      payload: {
-        timestamp: new Date(),
-        winResults,
-        winner
-      }
     });
   };
 }
@@ -108,11 +107,56 @@ function checkWinner(squares) {
 
 
 
-export const loadGame = () => {
-  const payload = localStorage.games ? JSON.parse(localStorage.games) : [];
+// export const loadGame = () => {
+//   const payload = localStorage.games ? JSON.parse(localStorage.games) : [];
+
+//   return {
+//     type: LOAD_GAME,
+//     payload
+//   };
+// };
+
+export function loadGame() {
 
   return {
     type: LOAD_GAME,
-    payload
+    payload: resultsRef.once('value').then(data => {
+      const results = data.val();
+      if(!results) return [];
+
+      return Object.keys(results).map(key => {
+        const result = results[key];
+        result.key = key;
+        return result;
+      });
+    })
   };
-};
+}
+
+
+export function endGame() {
+  return (dispatch, getState) => {
+    const { winResults } = getState().game;
+    const result = {
+      score: winResults,
+      winResults: winResults.length
+    };
+
+    const newRef = resultsRef.push();
+
+    dispatch({
+      type: END_GAME, 
+      payload: newRef.set(result).then(() => {
+        result.key = newRef.key;
+        return result;
+      })
+    });
+  };
+}
+
+export function addPlayers(playerNames) {
+  return {
+    type: ADD_PLAYERS,
+    payload: playerNames
+  };
+}

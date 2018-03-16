@@ -64,3 +64,11 @@
   cursor: pointer;
   margin-left: 1rem;
 }
+
+.result-ul {
+  list-style-type: none;
+}
+
+.result-ul li {
+  padding: 0.5rem 0;
+}
