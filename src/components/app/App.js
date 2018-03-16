@@ -22,7 +22,6 @@ class App extends Component {
         <div id="container">
           <Header/>
           <main id="main" role="main">
-            <Letters/>
             <Switch>
               <PrivateRoute exact path="/game" component={Game}/>
               <Route exact path="/leaderboard" component={Leaderboard}/>

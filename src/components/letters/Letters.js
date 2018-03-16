@@ -31,14 +31,7 @@ class Letters extends Component {
 
     return (
       <div className="letters-container">
-        <ReactCSSTransitionGroup
-          transitionName="slide-up"
-          transitionAppear={true}
-          transitionAppearTimeout={3000}
-          transitionEnter={false}
-          transitionLeave={false}>
-          {alphabet.map((letter, i)=> <Letter key={letter} style={{ 'transitionDelay': `${ i * 3 }s` }} letter={letter} onSelect={this.handleSelect}/>)}
-        </ReactCSSTransitionGroup>
+        {alphabet.map((letter, i)=> <Letter key={letter} letter={letter} onSelect={this.handleSelect} index={i} />)}
       </div>
     );
   }

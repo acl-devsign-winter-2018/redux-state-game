@@ -19,11 +19,11 @@
 
 .slide-up-appear {
   opacity: 0;
-  transform: translateY(10px);
-  transition: all .5s ease-in;
+  transform: translateY(30px);
+  transition: all .5s ease;
   
-  &.slide-up-appear-active {
-      opacity: 1;
-      transform: translateY(0px);
-  }
+}
+.slide-up-appear-active {
+  opacity: 1;
+  transform: translateY(0px);
 }
