@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Letter from './Letter';
 import { guessLetter, updateIncorrect } from './actions';
 import { endGame } from '../game/actions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Letter from './Letter';
 import './letters.css';
 
 
@@ -30,7 +31,14 @@ class Letters extends Component {
 
     return (
       <div className="letters-container">
-        {alphabet.map(letter => <Letter key={letter} letter={letter} onSelect={this.handleSelect}/>)}
+        <ReactCSSTransitionGroup
+          transitionName="slide-up"
+          transitionAppear={true}
+          transitionAppearTimeout={3000}
+          transitionEnter={false}
+          transitionLeave={false}>
+          {alphabet.map((letter, i)=> <Letter key={letter} style={{ 'transitionDelay': `${ i * 3 }s` }} letter={letter} onSelect={this.handleSelect}/>)}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

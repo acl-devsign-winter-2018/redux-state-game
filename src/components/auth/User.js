@@ -18,8 +18,6 @@ class User extends PureComponent {
       password: elements.password.value
     };
 
-    console.log(location.state);
-
     const { from } = location.state || { from: { pathname: '/' } };
     
     this.props.onSubmit(credentials)

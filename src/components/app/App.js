@@ -7,6 +7,7 @@ import Game from '../game/Game';
 import Leaderboard from '../leaderboard/Leaderboard';
 import Header from './header/Header';
 import PrivateRoute from './PrivateRoute';
+import Letters from '../letters/Letters';
 import './app.css';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
         <div id="container">
           <Header/>
           <main id="main" role="main">
+            <Letters/>
             <Switch>
               <PrivateRoute exact path="/game" component={Game}/>
               <Route exact path="/leaderboard" component={Leaderboard}/>

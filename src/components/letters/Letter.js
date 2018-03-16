@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class Letter extends Component {
 
   render() {
@@ -10,7 +9,7 @@ class Letter extends Component {
     const selected = guesses.includes(letter);
 
     return (
-      <button className="letter" onClick={(event) => onSelect(event.target)} value={letter} disabled={selected}>
+      <button ref={b => this.button = b} className="letter" onClick={(event) => onSelect(event.target)} value={letter} disabled={selected}>
         {letter}
       </button>
 
