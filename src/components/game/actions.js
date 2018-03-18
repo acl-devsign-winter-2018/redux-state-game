@@ -27,14 +27,15 @@ export function newGame() {
 
 export function endGame(outcome) {
   return (dispatch, getState) => {
-    const { player, incorrect, correct } = getState();
+    const { user, incorrect, correct, word } = getState();
 
     const score = (correct * 10) - (incorrect * 5);
     const newRef = scoresRef.push();
     const scoreToSave = {
-      player,
+      player: user.name,
       score,
-      outcome
+      outcome,
+      word
     };
 
     newRef.set(scoreToSave).then(()=>{

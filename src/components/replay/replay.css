@@ -1,13 +1,16 @@
+@import '../../styles/variables.css';
 
-#header {
-  // position: realtive;
-  // .replay-box {
-  //   position: absolute;
-  //   background: grey;
-  //   z-index: 100;
-  //   top: 60%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  //   width: 80%
-  // }
+.replay-box {
+  text-align: center;
+  button {
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    display: block;
+    font-size: 1.2em;
+    border-radius: .5rem;
+    background-color: $red;
+    color: white;
+    padding: .25rem 0;
+  }
 }

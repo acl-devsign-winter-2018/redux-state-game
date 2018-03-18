@@ -7,8 +7,10 @@ import { words, correct } from '../components/word/reducers';
 import { image, text } from '../components/image/reducers';
 import { word, scores, gameResult } from '../components/game/reducers';
 import { player } from '../components/player/reducers';
+import { user } from '../components/auth/reducers';
 
 const reducer = combineReducers({
+  user,
   guesses,
   word,
   words,
@@ -22,11 +24,6 @@ const reducer = combineReducers({
   scores,
   gameResult
 });
-
-window.onbeforeunload = () => {
-  const { scores } = store.getState();
-  window.localStorage.scores = JSON.stringify(scores);
-};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

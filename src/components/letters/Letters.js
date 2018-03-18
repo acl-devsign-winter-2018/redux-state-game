@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Letter from './Letter';
 import { guessLetter, updateIncorrect } from './actions';
 import { endGame } from '../game/actions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Letter from './Letter';
 import './letters.css';
 
 
@@ -30,7 +31,7 @@ class Letters extends Component {
 
     return (
       <div className="letters-container">
-        {alphabet.map(letter => <Letter key={letter} letter={letter} onSelect={this.handleSelect}/>)}
+        {alphabet.map((letter, i)=> <Letter key={letter} letter={letter} onSelect={this.handleSelect} index={i} />)}
       </div>
     );
   }

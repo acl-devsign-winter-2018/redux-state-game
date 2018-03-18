@@ -24,7 +24,6 @@ class Replay extends Component {
 export default connect(
   state => ({ 
     word: state.word,
-    player: state.player,
     guesses: state.guesses,
     correct: state.correct
   }),

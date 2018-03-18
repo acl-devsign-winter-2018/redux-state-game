@@ -10,5 +10,20 @@
     background-color: $red;
     color: white;
     border-radius: .5rem;
+    &:disabled {
+      background-color: $darkest-red;
+      color: $red;
+    }
   }
+}
+
+.slide-up-appear {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all .5s ease;
+  
+}
+.slide-up-appear-active {
+  opacity: 1;
+  transform: translateY(0px);
 }
