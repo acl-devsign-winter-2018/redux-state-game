@@ -38,7 +38,6 @@ export function game(state = initialState, { type, payload }) {
         oWins
       };
     }
-
     case TIE:
       return {
         ...state,
@@ -55,6 +54,7 @@ export function game(state = initialState, { type, payload }) {
         winner: 'no winner'
       };
     }
+
     case END_GAME:
       return {
         ...state,

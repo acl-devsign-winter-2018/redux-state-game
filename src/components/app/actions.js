@@ -80,10 +80,6 @@ export function reset() {
   };
 }
 
-
-
-
-
 function checkWinner(squares) {
   const winCombos = [
     [0, 1, 2],
@@ -104,7 +100,6 @@ function checkWinner(squares) {
   }
   return null;
 }
-
 
 
 // export const loadGame = () => {
