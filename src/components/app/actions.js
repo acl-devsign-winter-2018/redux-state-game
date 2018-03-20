@@ -1,34 +1,84 @@
-import { CHOICE, WIN, TIE, RESET } from './reducers';
+import { CHOICE, WIN, TIE, RESET, LOAD_GAME, END_GAME, ADD_PLAYERS } from './reducers';
+import { results } from '../../services/resultsApi';
+const resultsRef = results();
 
-export function takeTurn(i){
+
+export function takeTurn(i) {
   return (dispatch, getState) => {
 
-    const { activePlayer } = getState().game;
+    // choice 
+    const { activePlayer, gameOver, squares, winResults } = getState().game;
+    let updatedGame = [...squares];
+  
+    if(updatedGame[i] !== null) return;
+    if(gameOver === true) return;
+    updatedGame[i] = activePlayer;
+
+    let nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
+
+    // dispatch new payload - win
     dispatch({
       type: CHOICE,
-      payload: { activePlayer, i }
+      payload: { activePlayer:nextPlayer, squares: updatedGame }
     });
 
-
-    //if not, add square value, check winner, check tie, continue or END
-    const { squares } = getState().game;
-    const winner = checkWinner(squares);
-
+    const newSquares = getState().game.squares;
+    const winner = checkWinner(newSquares);
+    
+    if(winner === 'X') {
+      winResults.push('X won');
+    }
+    
+    if(winner === 'O') {
+      winResults.push('O won');
+    }
+    
     if(winner !== null) {
       dispatch({
         type: WIN,
         payload: winner
       });
+      //being called at histories.js
+      dispatch({
+        type: END_GAME,
+        payload: {
+          timestamp: new Date(),
+          winResults,
+          winner
+        }
+      });
+      dispatch(endGame());
     }
 
-    if(squares.indexOf(null) === -1 && winner === null) {
+    // tie
+    if(newSquares.indexOf(null) === -1 && winner === null) {
       dispatch({
         type: TIE
       });
     }
+
   };
 }
 
+export function reset() {
+  return (dispatch, getState) => {
+    const { winner, activePlayer, tie } = getState().game;
+    const cleanSquares = Array(9).fill(null);
+
+    let newActivePlayer = activePlayer;
+    if(tie === false) {
+      newActivePlayer = (winner === 'X') ? 'O' : 'X';
+    }
+    else {
+      newActivePlayer = (activePlayer === 'X') ? 'O' : 'X';
+    }
+
+    dispatch({
+      type: RESET,
+      payload: { winner, activePlayer:newActivePlayer, squares: cleanSquares }
+    });
+  };
+}
 
 function checkWinner(squares) {
   const winCombos = [
@@ -51,13 +101,57 @@ function checkWinner(squares) {
   return null;
 }
 
-export function reset() {
+
+// export const loadGame = () => {
+//   const payload = localStorage.games ? JSON.parse(localStorage.games) : [];
+
+//   return {
+//     type: LOAD_GAME,
+//     payload
+//   };
+// };
+
+export function loadGame() {
+
+  return {
+    type: LOAD_GAME,
+    payload: resultsRef.once('value').then(data => {
+      const results = data.val();
+      if(!results) return [];
+
+      return Object.keys(results).map(key => {
+        const result = results[key];
+        result.key = key;
+        return result;
+      });
+    })
+  };
+}
+
+
+export function endGame() {
   return (dispatch, getState) => {
-    const { winner } = getState().game;
+    const { winResults } = getState().game;
+    const result = {
+      score: winResults,
+      winResults: winResults.length
+    };
+
+    const newRef = resultsRef.push();
 
     dispatch({
-      type: RESET,
-      payload: winner
+      type: END_GAME, 
+      payload: newRef.set(result).then(() => {
+        result.key = newRef.key;
+        return result;
+      })
     });
+  };
+}
+
+export function addPlayers(playerNames) {
+  return {
+    type: ADD_PLAYERS,
+    payload: playerNames
   };
 }

@@ -2,51 +2,34 @@ export const CHOICE = 'CHOICE';
 export const WIN = 'WIN';
 export const TIE = 'TIE';
 export const RESET = 'RESET';
+export const WINNER_DISPLAY = 'WINNER_DISPLAY';
+export const LOAD_GAME = 'LOAD_GAME';
+export const END_GAME = 'END_GAME';
+export const ADD_PLAYERS = 'ADD_PLAYERS';
 
 export const initialState = {
   squares: Array(9).fill(null),
   activePlayer: 'X',
-  nextPlayer: 'O',
   winner: '',
   xWins: 0,
   oWins: 0,
-  gameOver: false
+  gameOver: false,
+  tie: false,
+  winResults: []
 };
 
-export default function game(state = initialState, { type, payload }) {
+export function game(state = initialState, { type, payload }) {
   switch(type) {
     case CHOICE: {
-      let updatedGame = [...state.squares];
-      const { activePlayer, i } = payload;
-
-      if(updatedGame[i] !== null) return state;
-      if(state.gameOver === true) return state;
-      updatedGame[i] = activePlayer;
-
-      let nextPlayer = (activePlayer === 'X') ? 'O' : 'X';
-
       return {
         ...state, 
-        squares: updatedGame,
-        activePlayer: nextPlayer
+        ...payload
       };
-
     }
 
     case WIN:{
-      if(state.gameOver === true) return state;
-
-      let xWins = state.xWins;
-      let oWins = state.oWins;
-
-      if(payload === 'X') {
-        xWins++;
-      }
-
-      if(payload === 'O') {
-        oWins++;
-      }
-
+      const xWins = payload === 'X' ? ++state.xWins : state.xWins;
+      const oWins = payload === 'O' ? ++state.oWins : state.oWins;
       return {
         ...state,
         winner: payload,
@@ -61,27 +44,58 @@ export default function game(state = initialState, { type, payload }) {
         tie: true, 
         gameOver: true
       };
+
     case RESET: {
-      let newActivePlayer = state.activePlayer;
-      if(state.tie === false) {
-        newActivePlayer = (state.winner === 'X') ? 'O' : 'X';
-      }
-      else {
-        newActivePlayer = (state.activePlayer === 'X') ? 'O' : 'X';
-      }
-
-      const newSquares = Array(9).fill(null);
-
       return {
         ...state,
-        squares: newSquares,
-        activePlayer: newActivePlayer,
+        ...payload,
         gameOver: false,
         tie: false,
         winner: 'no winner'
       };
     }
+
+    case END_GAME:
+      return {
+        ...state,
+        payload
+      };
+    case ADD_PLAYERS:
+      return {
+        ...state,
+        ...payload
+      };
     default:
       return state;
   }
 } 
+
+//being called at store.js
+export function gameLoad(state = [], { type, payload }) {
+  switch(type) {
+    
+    case END_GAME:
+      return {
+        state,
+        ...payload
+      };
+
+    case LOAD_GAME: 
+      return {
+       
+        payload
+      };
+
+    default:
+      return state;
+  }
+}
+
+// export function gameResults(state = [], { type, payload }) {
+//   switch(type) {
+//     case END_GAME:
+//       return [...state, payload];
+//     default:
+//       return state;
+//   }
+// }

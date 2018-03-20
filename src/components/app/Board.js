@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Game.css';
+import './game.css';
 import Square from './Square';
-import { takeTurn, reset } from './Actions';
+import { takeTurn, reset } from './actions';
 
 
 
 class Board extends Component {
+
 
   handleClick(i) {
     this.props.takeTurn(i);
@@ -62,7 +63,7 @@ function mapStateToProps(state) {
     winner: state.game.winner,
     xWins: state.game.xWins,
     oWins: state.game.oWins,
-    activePlayer: state.game.activePlayer
+    activePlayer: state.game.activePlayer,
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Game.css';
+import './game.css';
 
 export default class History extends Component {
 

@@ -1,17 +1,42 @@
 import { CHOICE } from './reducers';
-import { takeTurns } from './actions';
+import { takeTurn } from './actions';
 
-it.skip('creates CHOICE action', () => {
-  const testState = {
-    squares: Array(9).fill(''),
-    activePlayer: 'X',
-    nextPlayer: 'O',
-    turns: 0,
-    winner: ''
-  };
+jest.mock('../../services/resultsApi', () => ({
+  results: jest.fn()
+}));
 
-  // const { type, payload, squares } = takeTurns(5);
-  // console.log('*********', squares);
+describe('choice actions', () => {
 
-  // expect(type).toBe(CHOICE);
+  it('should creates CHOICE action', () => {
+    const testState = {
+      game: {
+        squares: Array(9).fill(null),
+        activePlayer: 'X',
+        winner: ''
+      }
+    };
+
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => (testState));
+
+    const result =  takeTurn(5);
+
+    result(dispatch, getState);
+
+    expect(dispatch.mock.calls[0][0].type).toBe(CHOICE);
+    expect(dispatch.mock.calls[0][0].payload).toEqual({ 
+      activePlayer: 'O', 
+      squares: [
+        null,
+        null,
+        null,
+        null,
+        null,
+        'X',
+        null,
+        null,
+        null
+      ]
+    });
+  });
 });
